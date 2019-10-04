@@ -1,0 +1,12 @@
+Name: 
+Gender: 
+Race: 
+Class: 
+Portrait: 
+Strength: 
+Constitution
+Dexterity
+Intelligence
+Wisdom
+Charisma
+HP: 

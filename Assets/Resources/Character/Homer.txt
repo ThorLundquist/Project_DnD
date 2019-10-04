@@ -1,0 +1,12 @@
+Name: Homer
+Gender: True
+Race: Dragonborn
+Class: Monk
+Portrait: MaleDragonborn (UnityEngine.Sprite)
+Strength: 12
+Constitution: 10
+Dexterity: 10
+Intelligence: 10
+Wisdom: 10
+Charisma: 11
+HP: 
