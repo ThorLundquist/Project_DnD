@@ -9,7 +9,7 @@ public class UIHandler : MonoBehaviour
 
     public Text raceText, classText, genderText;
     public Text strValue, dexValue, conValue, chaValue, wisValue, intValue;
-    public Text hpValue;
+    public Text hpValue, pointsValue;    
 
     public Text strRacial, dexRacial, conRacial, intRacial, wisRacial, chaRacial;
     public Image portrait;
@@ -43,6 +43,8 @@ public class UIHandler : MonoBehaviour
         //opdater billedet på UI'en
         portrait.sprite = myCharGen.myPortrait;
 
+        pointsValue.text = myCharGen.points.ToString();
+
         //Opdatere UI'en til at vise vores default view
         UpdateUI(false);
 
@@ -51,7 +53,6 @@ public class UIHandler : MonoBehaviour
     // Update is called once per frame
     void UpdateUI(bool changeRace)
     {
-
         Debug.Log("UIHandler UpdateUI() called");
         if (changeRace == true)
         {
@@ -60,7 +61,7 @@ public class UIHandler : MonoBehaviour
         }
 
         portrait.sprite = myCharGen.myPortrait;
-
+        pointsValue.text = myCharGen.points.ToString();
         // Opdatere Score kolonnen
         strValue.text = myCharGen.myAttributes[CharacterAttributes.BaseAttributes.Strength].ToString();
         conValue.text = myCharGen.myAttributes[CharacterAttributes.BaseAttributes.Constitution].ToString();
@@ -84,8 +85,7 @@ public class UIHandler : MonoBehaviour
         conModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Constitution].ToString();
         intModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Intelligence].ToString();
         wisModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Wisdom].ToString();
-        chaModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Charisma].ToString();
-        
+        chaModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Charisma].ToString();        
     }
     /*
     En række metoder der bliver kaldt når der klikkes på de knapper 
@@ -165,7 +165,63 @@ public class UIHandler : MonoBehaviour
 
     public void AddStrBtnClicked()
     {
-        myCharGen.AddToStrength();
+        myCharGen.AddToStr();
+        UpdateUI(false);
+    }
+    public void AddDexBtnClicked()
+    {
+        myCharGen.AddToDex();
+        UpdateUI(false);
+    }
+    public void AddConBtnClicked()
+    {
+        myCharGen.AddToCon();
+        UpdateUI(false);
+    }
+    public void AddIntBtnClicked()
+    {
+        myCharGen.AddToInt();
+        UpdateUI(false);
+    }
+    public void AddWisBtnClicked()
+    {
+        myCharGen.AddToWis();
+        UpdateUI(false);
+    }
+    public void AddChaBtnClicked()
+    {
+        myCharGen.AddToCha();
+        UpdateUI(false);
+    }
+
+    public void SubStrBtnClicked()
+    {
+        myCharGen.SubFromStr();
+        UpdateUI(false);
+    }
+    public void SubDexBtnClicked()
+    {
+        myCharGen.SubFromDex();
+        UpdateUI(false);
+    }
+    public void SubConBtnClicked()
+    {
+        myCharGen.SubFromCon();
+        UpdateUI(false);
+    }
+    public void SubIntBtnClicked()
+    {
+        myCharGen.SubFromInt();
+        UpdateUI(false);
+    }
+    public void SubWisBtnClicked()
+    {
+        myCharGen.SubFromWis();
+        UpdateUI(false);
+    }
+    public void SubChaBtnClicked()
+    {
+        myCharGen.SubFromCha();
         UpdateUI(false);
     }
 

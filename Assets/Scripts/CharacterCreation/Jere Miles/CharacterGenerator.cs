@@ -19,8 +19,7 @@ public class CharacterGenerator : MonoBehaviour
     int myHP;
     readonly int baseValue = 10;
     readonly int baseRacial = 0;
-
-
+    public int points;
 
     public void InitializeCharacterGenerator()
     {
@@ -72,6 +71,7 @@ public class CharacterGenerator : MonoBehaviour
 
     public void CheckRace()
     {
+        points = 27;
         Debug.Log("CheckRace called");
         InitializeAttributes();
         switch (myRace)
@@ -195,6 +195,7 @@ public class CharacterGenerator : MonoBehaviour
 
                 myRacials[CharacterAttributes.BaseRacials.Intelligence] += 1;
                 myRacials[CharacterAttributes.BaseRacials.Charisma] += 2;
+
                 portraitList = GetComponent<PortraitScriptable>().mTiefling;
                 if (!isMale)
                 {
@@ -338,14 +339,412 @@ public class CharacterGenerator : MonoBehaviour
         isMale = !isMale;
     }
 
-    public void AddToStrength()
+    public void AddToStr()
     {
-        int myStr = myAttributes[CharacterAttributes.BaseAttributes.Strength];
+        int myAtt = myAttributes[CharacterAttributes.BaseAttributes.Strength];
 
-        if (myStr < 18)
+        if ((myAtt < 13) && (points >= 1))
         {
             myAttributes[CharacterAttributes.BaseAttributes.Strength] += 1;
-            myStr++;
+            myAtt++;
+            points--;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt >= 13) && (myAtt <= 14) && (points >= 2))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Strength] += 1;
+            myAtt++;
+            points -= 2;
+            Debug.Log("total points: " + points);
+        }
+
+        else if ((myAtt >= 15) && (myAtt <= 16) && (points >= 3))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Strength] += 1;
+            myAtt++;
+            points -= 3;
+            Debug.Log("total points: " + points);
+        }
+
+        else if ((myAtt >= 17) && (myAtt <= 18) &&(points >= 4))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Strength] += 1;
+            myAtt++;
+            points -= 4;
+            Debug.Log("total points: " + points);
+        }
+    }
+    public void AddToDex()
+    {
+        int myAtt = myAttributes[CharacterAttributes.BaseAttributes.Dexterity];
+        if ((myAtt < 13) && (points >= 1))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 1;
+            myAtt++;
+            points--;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt >= 13) && (myAtt <= 14) && (points >= 2))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 1;
+            myAtt++;
+            points -= 2;
+            Debug.Log("total points: " + points);
+        }
+
+        else if ((myAtt >= 15) && (myAtt <= 16) && (points >= 3))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 1;
+            myAtt++;
+            points -= 3;
+            Debug.Log("total points: " + points);
+        }
+
+        else if ((myAtt >= 17) && (myAtt <= 18) && (points >= 4))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 1;
+            myAtt++;
+            points -= 4;
+            Debug.Log("total points: " + points);
+        }
+    }
+    public void AddToCon()
+    {
+        int myAtt = myAttributes[CharacterAttributes.BaseAttributes.Constitution];
+
+        if ((myAtt < 13) && (points >= 1))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Constitution] += 1;
+            myAtt++;
+            points--;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt >= 13) && (myAtt <= 14) && (points >= 2))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Constitution] += 1;
+            myAtt++;
+            points -= 2;
+            Debug.Log("total points: " + points);
+        }
+
+        else if ((myAtt >= 15) && (myAtt <= 16) && (points >= 3))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Constitution] += 1;
+            myAtt++;
+            points -= 3;
+            Debug.Log("total points: " + points);
+        }
+
+        else if ((myAtt >= 17) && (myAtt <= 18) && (points >= 4))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Constitution] += 1;
+            myAtt++;
+            points -= 4;
+            Debug.Log("total points: " + points);
+        }
+    }
+    public void AddToInt()
+    {
+        int myAtt = myAttributes[CharacterAttributes.BaseAttributes.Intelligence];
+
+        if ((myAtt < 13) && (points >= 1))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 1;
+            myAtt++;
+            points--;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt >= 13) && (myAtt <= 14) && (points >= 2))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 1;
+            myAtt++;
+            points -= 2;
+            Debug.Log("total points: " + points);
+        }
+
+        else if ((myAtt >= 15) && (myAtt <= 16) && (points >= 3))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 1;
+            myAtt++;
+            points -= 3;
+            Debug.Log("total points: " + points);
+        }
+
+        else if ((myAtt >= 17) && (myAtt <= 18) && (points >= 4))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 1;
+            myAtt++;
+            points -= 4;
+            Debug.Log("total points: " + points);
+        }
+    }
+    public void AddToWis()
+    {
+        int myAtt = myAttributes[CharacterAttributes.BaseAttributes.Wisdom];
+
+        if ((myAtt < 13) && (points >= 1))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Wisdom] += 1;
+            myAtt++;
+            points--;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt >= 13) && (myAtt <= 14) && (points >= 2))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Wisdom] += 1;
+            myAtt++;
+            points -= 2;
+            Debug.Log("total points: " + points);
+        }
+
+        else if ((myAtt >= 15) && (myAtt <= 16) && (points >= 3))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Wisdom] += 1;
+            myAtt++;
+            points -= 3;
+            Debug.Log("total points: " + points);
+        }
+
+        else if ((myAtt >= 17) && (myAtt <= 18) && (points >= 4))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Wisdom] += 1;
+            myAtt++;
+            points -= 4;
+            Debug.Log("total points: " + points);
+        }
+    }
+    public void AddToCha()
+    {
+        int myAtt = myAttributes[CharacterAttributes.BaseAttributes.Charisma];
+
+        if ((myAtt < 13) && (points >= 1))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 1;
+            myAtt++;
+            points--;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt >= 13) && (myAtt <= 14) && (points >= 2))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 1;
+            myAtt++;
+            points -= 2;
+            Debug.Log("total points: " + points);
+        }
+
+        else if ((myAtt >= 15) && (myAtt <= 16) && (points >= 3))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 1;
+            myAtt++;
+            points -= 3;
+            Debug.Log("total points: " + points);
+        }
+
+        else if ((myAtt >= 17) && (myAtt <= 18) && (points >= 4))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 1;
+            myAtt++;
+            points -= 4;
+            Debug.Log("total points: " + points);
+        }
+    }
+
+    public void SubFromStr()
+    {
+        int myAtt = myAttributes[CharacterAttributes.BaseAttributes.Strength];
+
+        if ((myAtt <= 13) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Strength] -= 1;
+            myAtt--;
+            points++;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt <= 15) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Strength] -= 1;
+            myAtt--;
+            points += 2;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt <= 17) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Strength] -= 1;
+            myAtt--;
+            points += 3;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt <= 19) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Strength] -= 1;
+            myAtt--;
+            points += 4;
+            Debug.Log("total points: " + points);
+        }
+    }
+    public void SubFromDex()
+    {
+        int myAtt = myAttributes[CharacterAttributes.BaseAttributes.Dexterity];
+
+        if ((myAtt <= 13) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Dexterity] -= 1;
+            myAtt--;
+            points++;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt <= 15) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Dexterity] -= 1;
+            myAtt--;
+            points += 2;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt <= 17) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Dexterity] -= 1;
+            myAtt--;
+            points += 3;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt <= 19) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Dexterity] -= 1;
+            myAtt--;
+            points += 4;
+            Debug.Log("total points: " + points);
+        }
+    }
+    public void SubFromCon()
+    {
+        int myAtt = myAttributes[CharacterAttributes.BaseAttributes.Constitution];
+
+        if ((myAtt <= 13) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Constitution] -= 1;
+            myAtt--;
+            points++;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt <= 15) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Constitution] -= 1;
+            myAtt--;
+            points += 2;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt <= 17) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Constitution] -= 1;
+            myAtt--;
+            points += 3;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt <= 19) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Constitution] -= 1;
+            myAtt--;
+            points += 4;
+            Debug.Log("total points: " + points);
+        }
+    }
+    public void SubFromInt()
+    {
+        int myAtt = myAttributes[CharacterAttributes.BaseAttributes.Intelligence];
+
+        if ((myAtt <= 13) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Intelligence] -= 1;
+            myAtt--;
+            points++;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt <= 15) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Intelligence] -= 1;
+            myAtt--;
+            points += 2;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt <= 17) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Intelligence] -= 1;
+            myAtt--;
+            points += 3;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt <= 19) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Intelligence] -= 1;
+            myAtt--;
+            points += 4;
+            Debug.Log("total points: " + points);
+        }
+    }
+    public void SubFromWis()
+    {
+        int myAtt = myAttributes[CharacterAttributes.BaseAttributes.Wisdom];
+
+        if ((myAtt <= 13) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Wisdom] -= 1;
+            myAtt--;
+            points++;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt <= 15) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Wisdom] -= 1;
+            myAtt--;
+            points += 2;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt <= 17) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Wisdom] -= 1;
+            myAtt--;
+            points += 3;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt <= 19) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Wisdom] -= 1;
+            myAtt--;
+            points += 4;
+            Debug.Log("total points: " + points);
+        }
+    }
+    public void SubFromCha()
+    {
+        int myAtt = myAttributes[CharacterAttributes.BaseAttributes.Charisma];
+
+        if ((myAtt <= 13) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Charisma] -= 1;
+            myAtt--;
+            points++;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt <= 15) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Charisma] -= 1;
+            myAtt--;
+            points += 2;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt <= 17) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Charisma] -= 1;
+            myAtt--;
+            points += 3;
+            Debug.Log("total points: " + points);
+        }
+        else if ((myAtt <= 19) && (myAtt > 8))
+        {
+            myAttributes[CharacterAttributes.BaseAttributes.Charisma] -= 1;
+            myAtt--;
+            points += 4;
+            Debug.Log("total points: " + points);
         }
     }
 }
