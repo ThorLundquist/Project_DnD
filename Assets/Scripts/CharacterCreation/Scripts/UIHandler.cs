@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIHandler : MonoBehaviour
@@ -161,6 +162,19 @@ public class UIHandler : MonoBehaviour
         }
 
         GetComponent<FileIO>().SaveCharacter(nameValue.text);
+    }
+
+    public void ContBtnClicked()
+    {
+        Debug.Log("ContBtn Click");
+        if (nameValue.text == "")
+        {
+            Debug.Log("No name entered");
+            return;
+        }
+
+        GetComponent<FileIO>().SaveCharacter(nameValue.text);
+        SceneManager.LoadScene(2);
     }
 
     public void AddStrBtnClicked()

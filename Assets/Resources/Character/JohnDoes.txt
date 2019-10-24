@@ -1,0 +1,12 @@
+Name: JohnDoes
+Gender: True
+Race: Human
+Class: Fighter
+Portrait: MaleHuman1 (UnityEngine.Sprite)
+Strength: 19
+Constitution: 13
+Dexterity: 13
+Intelligence: 13
+Wisdom: 12
+Charisma: 11
+HP: 

@@ -1,0 +1,12 @@
+Name: HolgerManden
+Gender: True
+Race: Human
+Class: Fighter
+Portrait: MaleHuman2 (UnityEngine.Sprite)
+Strength: 19
+Constitution: 12
+Dexterity: 15
+Intelligence: 11
+Wisdom: 11
+Charisma: 11
+HP: 

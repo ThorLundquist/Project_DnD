@@ -1,0 +1,12 @@
+Name: DeleteDis
+Gender: True
+Race: Human
+Class: Fighter
+Portrait: MaleHuman (UnityEngine.Sprite)
+Strength: 15
+Constitution: 15
+Dexterity: 15
+Intelligence: 12
+Wisdom: 14
+Charisma: 14
+HP: 
