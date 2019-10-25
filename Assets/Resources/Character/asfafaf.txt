@@ -1,0 +1,12 @@
+Name: asfafaf
+Gender: True
+Race: Human
+Class: Fighter
+Portrait: MaleHuman (UnityEngine.Sprite)
+Strength: 11
+Constitution: 11
+Dexterity: 11
+Intelligence: 11
+Wisdom: 11
+Charisma: 11
+HP: 
