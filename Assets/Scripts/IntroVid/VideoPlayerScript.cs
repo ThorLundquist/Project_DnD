@@ -18,6 +18,7 @@ public class VideoPlayerScript : MonoBehaviour
         Application.runInBackground = true;
         StartCoroutine(PlayVideo());
     }
+
     IEnumerator PlayVideo()
     {
         //Add VideoPlayer to the GameObject
@@ -34,8 +35,10 @@ public class VideoPlayerScript : MonoBehaviour
 
         //Assign the Audio from Video to AudioSource to be played
         videoPlayer.EnableAudioTrack(0, true);
-        //Set video To Play then prepare Audio to prevent Buffering
+
+        //Set video To Play
         videoPlayer.clip = videoToPlay;
+
         videoPlayer.Prepare();
         //Wait until video is prepared
 
