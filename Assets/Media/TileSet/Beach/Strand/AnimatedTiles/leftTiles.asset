@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: leftTiles
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: -6798348376948685004, guid: 0b98f282d885e7c47a2c08c12ba8b2dc, type: 3}
+  - {fileID: -2213794084827924571, guid: 0b98f282d885e7c47a2c08c12ba8b2dc, type: 3}
+  - {fileID: 6301729988767453709, guid: 0b98f282d885e7c47a2c08c12ba8b2dc, type: 3}
+  - {fileID: 8341345097588745162, guid: 0b98f282d885e7c47a2c08c12ba8b2dc, type: 3}
+  m_MinSpeed: 3
+  m_MaxSpeed: 3
+  m_AnimationStartTime: 0
+  m_TileColliderType: 2
