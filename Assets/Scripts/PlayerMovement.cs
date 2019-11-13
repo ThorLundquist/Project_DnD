@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
         change.x = Input.GetAxisRaw("Horizontal"); //Ved at bruge "GetAxixRaw" i stedet for "GetAxis" eliminere man, accelerationen, og tager direkte værdig, så man får nitendo følelsen.
         change.y = Input.GetAxisRaw("Vertical");
         UpdateAnimationAndMove();
-        Debug.Log(change); //--> En lille tekst debugger, så jeg kan være sikker på at få de rigtige værdiger printet ud.
+        //Debug.Log(change); //--> En lille tekst debugger, så jeg kan være sikker på at få de rigtige værdiger printet ud.
 
     }
     void MoveCharacter()
@@ -36,13 +36,13 @@ public class PlayerMovement : MonoBehaviour
         if (change != Vector3.zero)
         {
             MoveCharacter();
-            animator.SetFloat("MoveX", change.x);
-            animator.SetFloat("MoveY", change.y);
-            animator.SetBool("Moving", true);
+            //animator.SetFloat("MoveX", change.x);
+            //animator.SetFloat("MoveY", change.y);
+            //animator.SetBool("Moving", true);
         }
         else
         {
-            animator.SetBool("Moving", false);
+          //  animator.SetBool("Moving", false);
         }
     }
 }
