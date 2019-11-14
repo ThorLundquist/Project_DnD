@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
         settingsPanel.SetActive(true);
     }
 
-    public void CloseSettings()
+    public void CloseSettings() 
     {
         settingsPanel.SetActive(false);
     }

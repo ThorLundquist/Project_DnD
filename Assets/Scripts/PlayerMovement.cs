@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D myRigidbody;
     private Vector3 change;
     private Animator animator;
+    public GameObject magicCircle;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,4 +46,5 @@ public class PlayerMovement : MonoBehaviour
           //  animator.SetBool("Moving", false);
         }
     }
+    
 }
