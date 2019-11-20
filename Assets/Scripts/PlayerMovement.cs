@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 change;
     private Animator animator;
     public GameObject magicCircle;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -1,19 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MagicCircle : MonoBehaviour
 {
     public bool move = false;
     public Vector2 mcPos;
     public Vector2 cPos;
-    public GameObject magicCircle;
-    public GameObject character;
+    public Vector2 cenPos;
+    Animator anim;
+
+    /*
+        I've found two ways to go about getting the position of any object in Unity. First is to tag it in the editor. 
+        The other is to reference it as an object in a script, like I've done here
+    */
+    public GameObject center;
+    public GameObject character; // You will need to drag the character object in the Unity editor's Hierarchy onto the Script in the Character field
 
 
     private void Start()
     {
-        mcPos = GameObject.FindGameObjectWithTag("MC").transform.position;  // Takes the position of any object with the tag "MC" and stores it in the variable "mcPos"
+        cenPos = center.transform.position;
+        // mcPos = GameObject.FindGameObjectWithTag("MC").transform.position;  
+        // Takes the position of any object with the tag "MC" and stores it in the variable "mcPos"
+
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -23,11 +32,18 @@ public class MagicCircle : MonoBehaviour
         if (move)
         {
             // If Character's collider triggers MagicCircle's collider, character moves into the middle of MagicCircle
-            transform.position = Vector2.MoveTowards(transform.position, mcPos, 2 * Time.deltaTime); 
+            transform.position = Vector2.MoveTowards(transform.position, cenPos, 2 * Time.deltaTime); 
 
-            if (mcPos == cPos)
+            if (cenPos == cPos)
             {
                 move = false;
+                Debug.Log("it should work");  
+
+              //  if (Input.GetButtonDown("Test"))
+               // {
+                    Debug.Log("Press space to teleport!");
+                    anim.SetTrigger("isTeleport");
+              //  }
             }
         }
 
