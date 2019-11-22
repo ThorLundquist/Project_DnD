@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: cRRD1
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: -7164047601106383942, guid: 0b98f282d885e7c47a2c08c12ba8b2dc, type: 3}
+  - {fileID: -5543725592443658117, guid: 0b98f282d885e7c47a2c08c12ba8b2dc, type: 3}
+  - {fileID: 2506595584770021954, guid: 0b98f282d885e7c47a2c08c12ba8b2dc, type: 3}
+  - {fileID: 706376303748215389, guid: 0b98f282d885e7c47a2c08c12ba8b2dc, type: 3}
+  m_MinSpeed: 1
+  m_MaxSpeed: 1
+  m_AnimationStartTime: 0
+  m_TileColliderType: 1
