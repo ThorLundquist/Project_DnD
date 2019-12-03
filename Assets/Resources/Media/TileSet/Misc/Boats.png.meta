@@ -50,7 +50,7 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
+    aniso: 0
     mipBias: -100
     wrapU: 1
     wrapV: 1
@@ -63,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -174,149 +174,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Boats_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 168
-        width: 126
-        height: 84
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: 27, y: -2}
-        - {x: 16, y: 6}
-        - {x: -2, y: 16}
-        - {x: -12, y: 21}
-        - {x: -27, y: 25}
-        - {x: -38, y: 26}
-        - {x: -46, y: 26}
-        - {x: -51, y: 17}
-        - {x: -46, y: 4}
-        - {x: -30, y: -11}
-        - {x: -6, y: -23}
-        - {x: 7, y: -26}
-        - {x: 29, y: -26}
-        - {x: 39, y: -21}
-        - {x: 41, y: -16}
-        - {x: 41, y: -9}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 030c9bc3060ddbb459e9ce755257cf41
-      internalID: -1580319882557559615
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Boats_1
-      rect:
-        serializedVersion: 2
-        x: 126
-        y: 168
-        width: 126
-        height: 84
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e7ce6eb581aeb4d4280b2a8064eb8fb6
-      internalID: -3810700510920979866
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Boats_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 84
-        width: 126
-        height: 84
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c70869428ea85ca4b8c33d7464be1979
-      internalID: -9147089936916420377
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Boats_3
-      rect:
-        serializedVersion: 2
-        x: 126
-        y: 84
-        width: 126
-        height: 84
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2c5d27d071471bf41bc4e8ea066e99bc
-      internalID: -3934190898929484954
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Boats_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 126
-        height: 84
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2b630b957bc907d428107b78dc885f7f
-      internalID: 900263761102635982
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Boats_5
-      rect:
-        serializedVersion: 2
-        x: 126
-        y: 0
-        width: 126
-        height: 84
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dcb3e070a4a0d14418393cebff0b313d
-      internalID: -2601345482978531053
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
