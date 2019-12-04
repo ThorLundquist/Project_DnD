@@ -1,9 +1,9 @@
-﻿Shader "Hidden/NewImageEffectShader"
+﻿Shader "Hidden/FogOfWarShader"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
-		_SecondaryTex("Texture", 2D) = "white" {}
+        _MainTex ("Main Texture", 2D) = "white" {}
+		_SecondaryTex("Secondary Texture", 2D) = "white" {}
     }
     SubShader
     {
@@ -13,7 +13,7 @@
 		}
         Pass
         {
-			Blend SrcAlpha OneminusSrcAlpha
+			Blend SrcAlpha OneMinusSrcAlpha
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
