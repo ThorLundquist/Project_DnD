@@ -1,7 +1,10 @@
 fileFormatVersion: 2
 guid: 03435f376320d0e418058b601acc79fd
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -3570886457045058265
+    second: Eq_Slot_0
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -156,7 +159,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Eq_Slot_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 9, y: 9, z: 9, w: 9}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 845ddaa1acb0e0944afedde532d8ad8e
+      internalID: -3570886457045058265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

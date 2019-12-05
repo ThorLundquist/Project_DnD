@@ -1,7 +1,10 @@
 fileFormatVersion: 2
 guid: f8fceb41b68ef0a4ea35add24f4635e0
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 5887095154110329873
+    second: Helmet_Icon_0
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -72,7 +75,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Helmet_Icon_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 59
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 844eebe4b505dc64490b352a4ffdc57f
+      internalID: 5887095154110329873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

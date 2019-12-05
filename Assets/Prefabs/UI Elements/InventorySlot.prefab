@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5165302185140916003}
   - component: {fileID: 5943882055963220433}
   - component: {fileID: 6136588454833533374}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: InvSlotBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 2564567540864015610}
   - component: {fileID: 5853350299990005720}
   - component: {fileID: 8808456761284569840}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: RemoveBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,8 +154,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 43.5, y: -4.7}
-  m_SizeDelta: {x: 12, y: 12}
+  m_AnchoredPosition: {x: 42.28, y: -5.75}
+  m_SizeDelta: {x: 16, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2564567540864015610
 CanvasRenderer:
@@ -218,7 +218,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -232,7 +232,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 5853350299990005720}
   m_OnClick:
     m_PersistentCalls:
@@ -246,7 +246,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7097615643346450163}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: InventorySlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 279039426005666149}
   - component: {fileID: 4021133877775200619}
   - component: {fileID: 213119129217837346}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8222892769005983211}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -337,8 +337,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8945879103972220755, guid: 2a1c781e35926804da1a57d450ea2c86,
-    type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
