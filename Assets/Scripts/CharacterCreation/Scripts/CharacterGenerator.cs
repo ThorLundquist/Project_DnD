@@ -6,6 +6,7 @@ public class CharacterGenerator : MonoBehaviour
 {
     public List<Sprite> portraitList;
     public Sprite myPortrait;
+    public string portraitString = "";
 
     public CharacterAttributes.Races myRace;
     public CharacterAttributes.Classes myClass;
@@ -207,8 +208,21 @@ public class CharacterGenerator : MonoBehaviour
                 break;
         }
 
-        //Opdater portræt til default i den nye List
-        myPortrait = portraitList[0];
+        if (portraitString == "")
+        {
+            //Opdater portræt til default i den nye List
+            myPortrait = portraitList[0];
+        }
+        else
+        {
+            foreach (Sprite thisPortrait in portraitList)
+            {
+                if (thisPortrait.ToString() == portraitString)
+                {
+                    myPortrait = thisPortrait;
+                }
+            }
+        }
     }
 
     public void ChangeRace(bool goNext)

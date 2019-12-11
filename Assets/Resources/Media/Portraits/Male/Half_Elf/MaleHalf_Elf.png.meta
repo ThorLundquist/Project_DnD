@@ -1,7 +1,10 @@
 fileFormatVersion: 2
 guid: 0429c56659198f94499511663d3b7ae6
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -8368617084794675960
+    second: MaleHalf_Elf_0
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -72,7 +75,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: MaleHalf_Elf_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 400
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 052b6923bbb814443adc288f491ede7e
+      internalID: -8368617084794675960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

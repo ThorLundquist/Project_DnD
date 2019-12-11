@@ -1,0 +1,12 @@
+Name: Homer
+Gender: True
+Race: Human
+Class: Monk
+Portrait: MaleHuman3 (UnityEngine.Sprite)
+Strength: 12
+Constitution: 13
+Dexterity: 14
+Intelligence: 18
+Wisdom: 13
+Charisma: 13
+HP: 

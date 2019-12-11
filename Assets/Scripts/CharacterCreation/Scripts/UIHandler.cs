@@ -239,6 +239,21 @@ public class UIHandler : MonoBehaviour
         UpdateUI(false);
     }
 
+    public void LoadBtnClicked()
+    {
+        if (nameValue.text == "")
+        {
+            Debug.Log("Need a name");
+            return;
+        }
+
+        GetComponent<FileIO>().LoadCharacter(nameValue.text);
+
+        UpdateUI(true);
+        raceText.text = myCharGen.myRace.ToString();
+        classText.text = myCharGen.myClass.ToString();
+    }
+
     /*
     Metode der udregner karakterens Mod values, som er de tal 
     der skal bruges til de fleste rolls i spillet

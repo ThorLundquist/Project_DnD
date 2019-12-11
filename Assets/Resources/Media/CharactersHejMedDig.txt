@@ -1,0 +1,12 @@
+Name: HejMedDig
+Gender: True
+Race: Human
+Class: Monk
+Portrait: MaleHuman2 (UnityEngine.Sprite)
+Strength: 11
+Constitution: 13
+Dexterity: 11
+Intelligence: 14
+Wisdom: 16
+Charisma: 17
+HP: 
