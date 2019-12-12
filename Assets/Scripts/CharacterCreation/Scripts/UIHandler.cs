@@ -10,59 +10,47 @@ public class UIHandler : MonoBehaviour
 
     public Text raceText, classText, genderText;
     public Text strValue, dexValue, conValue, chaValue, wisValue, intValue;
-    public Text hpValue, pointsValue;    
-
+    public Text hpValue, pointsValue;
     public Text strRacial, dexRacial, conRacial, intRacial, wisRacial, chaRacial;
     public Image portrait;
-
     public Text strModValue, dexModValue, conModValue, intModValue, wisModValue, chaModValue;
-
     public Text nameValue;
-
     public List<GameObject> attributeValuesList;
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("UI Handler Start()");
-
         myCharGen = GetComponent<CharacterGenerator>();
-
         myCharGen.InitializeCharacterGenerator();
         myCharGen.CheckRace();
-
         raceText.text = myCharGen.myRace.ToString();
         classText.text = myCharGen.myClass.ToString();
 
-        //Opdatere default gender text på knappen
+        //Updates default gender text 
         genderText.text = "Male";
         if (!myCharGen.isMale)
         {
             genderText.text = "Female";
         }
 
-        //opdater billedet på UI'en
+        //Updates the portrait
         portrait.sprite = myCharGen.myPortrait;
-
         pointsValue.text = myCharGen.points.ToString();
 
-        //Opdatere UI'en til at vise vores default view
-        UpdateUI(false);
-
+        //UpdateUI(true) sets the default view
+        UpdateUI(true);
     }
 
-    // Update is called once per frame
-    void UpdateUI(bool changeRace)
+    public void UpdateUI(bool changeRace)
     {
-        Debug.Log("UIHandler UpdateUI() called");
         if (changeRace == true)
         {
-            Debug.Log("UIHandler UpdateUI() if changeRace");
             myCharGen.CheckRace();
         }
 
         portrait.sprite = myCharGen.myPortrait;
         pointsValue.text = myCharGen.points.ToString();
+
         // Opdatere Score kolonnen
         strValue.text = myCharGen.myAttributes[CharacterAttributes.BaseAttributes.Strength].ToString();
         conValue.text = myCharGen.myAttributes[CharacterAttributes.BaseAttributes.Constitution].ToString();
@@ -80,21 +68,22 @@ public class UIHandler : MonoBehaviour
         chaRacial.text = myCharGen.myRacials[CharacterAttributes.BaseRacials.Charisma].ToString();
 
         CalcMods();
+
         //Opdatere Mod kolonnen
-        strModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Strength].ToString();
-        dexModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Dexterity].ToString();
-        conModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Constitution].ToString();
-        intModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Intelligence].ToString();
-        wisModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Wisdom].ToString();
-        chaModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Charisma].ToString();        
+        //strModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Strength].ToString();
+        //dexModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Dexterity].ToString();
+        //conModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Constitution].ToString();
+        //intModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Intelligence].ToString();
+        //wisModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Wisdom].ToString();
+        //chaModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Charisma].ToString();        
     }
+
     /*
     En række metoder der bliver kaldt når der klikkes på de knapper 
     som de er sat sammen med i Unity via objektet "Character".     
     */
     public void NextRaceClicked()
     {
-        Debug.Log("Next Race");
         myCharGen.ChangeRace(true);
         raceText.text = myCharGen.myRace.ToString();
         UpdateUI(true);
@@ -102,14 +91,12 @@ public class UIHandler : MonoBehaviour
 
     public void PrevRaceClicked()
     {
-        Debug.Log("Previous Race");
         myCharGen.ChangeRace(false);
         raceText.text = myCharGen.myRace.ToString();
         UpdateUI(true);
     }
     public void NextClassClicked()
     {
-        Debug.Log("Next Class");
         myCharGen.ChangeClass(true);
         classText.text = myCharGen.myClass.ToString();
         UpdateUI(false);
@@ -117,7 +104,6 @@ public class UIHandler : MonoBehaviour
 
     public void PrevClassClicked()
     {
-        Debug.Log("Previous Class");
         myCharGen.ChangeClass(false);
         classText.text = myCharGen.myClass.ToString();
         UpdateUI(false);
@@ -125,21 +111,18 @@ public class UIHandler : MonoBehaviour
 
     public void NextPortraitClicked()
     {
-        Debug.Log("Next Portrait");
         myCharGen.ChangePortrait(true);
         portrait.sprite = myCharGen.myPortrait;
     }
 
     public void PrevPortraitClicked()
     {
-        Debug.Log("Previous Portrait");
         myCharGen.ChangePortrait(false);
         portrait.sprite = myCharGen.myPortrait;
     }
 
     public void GenderButtonClicked()
     {
-        Debug.Log("Gender button");
         myCharGen.ChangeGender();
         if (myCharGen.isMale)
         {
@@ -154,7 +137,6 @@ public class UIHandler : MonoBehaviour
 
     public void SaveBtnClicked()
     {
-        Debug.Log("SaveBtn Click");
         if (nameValue.text == "")
         {
             Debug.Log("No name entered");
@@ -166,7 +148,6 @@ public class UIHandler : MonoBehaviour
 
     public void ContBtnClicked()
     {
-        Debug.Log("ContBtn Click");
         if (nameValue.text == "")
         {
             Debug.Log("No name entered");
@@ -248,10 +229,19 @@ public class UIHandler : MonoBehaviour
         }
 
         GetComponent<FileIO>().LoadCharacter(nameValue.text);
+        UpdateUI(false);
 
-        UpdateUI(true);
         raceText.text = myCharGen.myRace.ToString();
         classText.text = myCharGen.myClass.ToString();
+
+        if (myCharGen.isMale)
+        {
+            genderText.text = "Male";
+        }
+        else
+        {
+            genderText.text = "Female";
+        }
     }
 
     /*
@@ -260,7 +250,6 @@ public class UIHandler : MonoBehaviour
     */
     void CalcMods()
     {
-        Debug.Log("Calculate Mods");
         int div = 2;
         int min = 5;
 

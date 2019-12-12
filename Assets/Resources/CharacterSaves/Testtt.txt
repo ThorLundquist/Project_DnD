@@ -1,8 +1,8 @@
-Name: HolgerManden
+Name: Testtt
 Gender: True
 Race: Human
-Class: Fighter
-Portrait: MaleHuman2 (UnityEngine.Sprite)
+Class: Rogue
+Portrait: MaleHuman3 (UnityEngine.Sprite)
 Strength: 19
 Constitution: 12
 Dexterity: 15

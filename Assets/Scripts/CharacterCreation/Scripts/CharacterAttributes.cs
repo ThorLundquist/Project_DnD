@@ -22,7 +22,7 @@ public class CharacterAttributes : MonoBehaviour
         Intelligence,
         Wisdom,
         Charisma
-    }
+    };
 
     public enum BaseRacials
     {
@@ -32,7 +32,7 @@ public class CharacterAttributes : MonoBehaviour
         Intelligence,
         Wisdom,
         Charisma
-    }
+    };
 
     public enum Races
     {

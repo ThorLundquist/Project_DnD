@@ -16,11 +16,11 @@ public class FileIO : MonoBehaviour
         //grab reference to the current character generation
         CharacterGenerator thisCharacter = GetComponent<CharacterGenerator>();
         //basic population of output file
-        mySW.WriteLine("Name: " + name);
-        mySW.WriteLine("Gender: " + thisCharacter.isMale);
-        mySW.WriteLine("Race: " + thisCharacter.myRace.ToString());
-        mySW.WriteLine("Class: " + thisCharacter.myClass.ToString());
-        mySW.WriteLine("Portrait: " + thisCharacter.myPortrait.ToString());
+        mySW.WriteLine("Name:" + name);
+        mySW.WriteLine("Gender:" + thisCharacter.isMale);
+        mySW.WriteLine("Race:" + thisCharacter.myRace.ToString());
+        mySW.WriteLine("Class:" + thisCharacter.myClass.ToString());
+        mySW.WriteLine("Portrait:" + thisCharacter.myPortrait.ToString());
 
         foreach (CharacterAttributes.BaseAttributes thisAttributes in System.Enum.GetValues(typeof(CharacterAttributes.BaseAttributes)))
         {
@@ -36,6 +36,8 @@ public class FileIO : MonoBehaviour
     public void LoadCharacter(string name)
     {
         fileName = filePath + name + ".txt";
+        Debug.Log("Filename is: " + fileName);
+
         StreamReader mySR = new StreamReader(fileName);
 
         if (!File.Exists(fileName))
@@ -47,58 +49,72 @@ public class FileIO : MonoBehaviour
         CharacterGenerator thisCharacter = GetComponent<CharacterGenerator>();
 
         string input = mySR.ReadLine();
-
         while (input != null || input == "")
         {
-            Debug.Log("");
-        }
-
-        if (input.Contains(":"))
-        {
-            int index = input.IndexOf(":");
-            string thing = input.Substring(0, index);
-            string value = input.Substring(index + 1, (input.Length - 1) - index);
-
-            switch (thing)
+            for (int i = 0; i < 10; i++)
             {
-                case "Name":
-                    break;
-                case "Race":
-                    foreach (CharacterAttributes.Races thisRace in System.Enum.GetValues(typeof(CharacterAttributes.Races)))
+                Debug.Log(input);
+                if (input.Contains(":"))
+                {
+                    int index = input.IndexOf(":");
+                    string thing = input.Substring(0, index);
+                    string value = input.Substring(index + 1, (input.Length - 1) - index);
+
+                    switch (thing)
                     {
-                        if (thisRace.ToString() == value)
-                        {
-                            thisCharacter.myRace = thisRace;
-                        }
+                        case "Name":
+                            break;
+                        case "Race":
+                            foreach (CharacterAttributes.Races thisRace in System.Enum.GetValues(typeof(CharacterAttributes.Races)))
+                            {
+                                if (thisRace.ToString() == value)
+                                {
+                                    thisCharacter.myRace = thisRace;
+                                }
+                            }
+                            break;
+                        case "Class":
+                            foreach (CharacterAttributes.Classes thisClass in System.Enum.GetValues(typeof(CharacterAttributes.Classes)))
+                            {
+                                if (thisClass.ToString() == value)
+                                {
+                                    Debug.Log("before: " + thisCharacter.myClass);
+                                    thisCharacter.myClass = thisClass;
+                                    Debug.Log("after: " + thisCharacter.myClass);
+                                }
+                            }
+                            break;
+                        case "Gender":
+                            thisCharacter.isMale = true;
+                            if (value == "False")
+                            {
+                                thisCharacter.isMale = false;
+                            }
+                            break;
+                        case "Portrait":
+                            thisCharacter.portraitString = value;
+                            GetComponent<UIHandler>().UpdateUI(true);
+                            break;
+                        case "HP":                    
+                            break;
+                        default:
+                            foreach (CharacterAttributes.BaseAttributes thisAttributes in System.Enum.GetValues(typeof(CharacterAttributes.BaseAttributes)))
+                            {
+                                if (thisAttributes.ToString() == thing)
+                                {
+                                    thisCharacter.myAttributes[thisAttributes] = int.Parse(value);                    }
+                            }
+                            break;
                     }
-                    break;
-                case "Class":
-                    foreach (CharacterAttributes.Classes thisClass in System.Enum.GetValues(typeof(CharacterAttributes.Classes)))
-                    {
-                        if (thisClass.ToString() == value)
-                        {
-                            thisCharacter.myClass = thisClass;
-                        }
-                    }
-                    break;
-                case "Gender":
-                    thisCharacter.isMale = true;
-                    if (value == "False")
-                    {
-                        thisCharacter.isMale = false;
-                    }
-                    break;
-                case "Portrait":
-                    thisCharacter.portraitString = value;
-                    break;
-                default:
-                    break;
+                }
+                else
+                {
+                    Debug.Log("Symbol : not found");
+                }
             }
+            break;
         }
-        else
-        {
-            Debug.Log("Symbol : not found");
-        }
+        mySR.Close();
 
     }
 

@@ -1,12 +1,12 @@
-Name: jophn 
+Name: ASD
 Gender: True
 Race: Human
 Class: Paladin
 Portrait: MaleHuman3 (UnityEngine.Sprite)
 Strength: 11
 Constitution: 11
-Dexterity: 11
+Dexterity: 12
 Intelligence: 11
-Wisdom: 11
-Charisma: 11
+Wisdom: 15
+Charisma: 19
 HP: 
