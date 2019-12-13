@@ -27,7 +27,7 @@ public class FileIO : MonoBehaviour
             mySW.WriteLine(thisAttributes.ToString() + ": " + thisCharacter.myAttributes[thisAttributes]);
         }
 
-        mySW.WriteLine("HP: ");
+        mySW.WriteLine("HP:");
 
         mySW.Flush();
         mySW.Close();
@@ -35,87 +35,85 @@ public class FileIO : MonoBehaviour
 
     public void LoadCharacter(string name)
     {
+        name = "Test1";
         fileName = filePath + name + ".txt";
         Debug.Log("Filename is: " + fileName);
-
-        StreamReader mySR = new StreamReader(fileName);
-
         if (!File.Exists(fileName))
         {
             Debug.Log("File not found");
             return;
         }
 
+        StreamReader mySR = new StreamReader(fileName);
+
         CharacterGenerator thisCharacter = GetComponent<CharacterGenerator>();
 
         string input = mySR.ReadLine();
+
         while (input != null || input == "")
         {
-            for (int i = 0; i < 10; i++)
+            Debug.Log(input);
+            if (input.Contains(":"))
             {
-                Debug.Log(input);
-                if (input.Contains(":"))
+                int index = input.IndexOf(":");
+                string thing = input.Substring(0, index);
+                string value = input.Substring(index + 1, (input.Length - 1) - index);
+                switch (thing)
                 {
-                    int index = input.IndexOf(":");
-                    string thing = input.Substring(0, index);
-                    string value = input.Substring(index + 1, (input.Length - 1) - index);
-
-                    switch (thing)
-                    {
-                        case "Name":
-                            break;
-                        case "Race":
-                            foreach (CharacterAttributes.Races thisRace in System.Enum.GetValues(typeof(CharacterAttributes.Races)))
+                    case "Name":
+                        thisCharacter.myName = value;
+                        break;
+                    case "Race":
+                        foreach (CharacterAttributes.Races thisRace in System.Enum.GetValues(typeof(CharacterAttributes.Races)))
+                        {
+                            if (thisRace.ToString() == value)
                             {
-                                if (thisRace.ToString() == value)
-                                {
-                                    thisCharacter.myRace = thisRace;
-                                }
+                                thisCharacter.myRace = thisRace;
                             }
-                            break;
-                        case "Class":
-                            foreach (CharacterAttributes.Classes thisClass in System.Enum.GetValues(typeof(CharacterAttributes.Classes)))
+                        }
+                        break;
+                    case "Class":
+                        foreach (CharacterAttributes.Classes thisClass in System.Enum.GetValues(typeof(CharacterAttributes.Classes)))
+                        {
+                            if (thisClass.ToString() == value)
                             {
-                                if (thisClass.ToString() == value)
-                                {
-                                    Debug.Log("before: " + thisCharacter.myClass);
-                                    thisCharacter.myClass = thisClass;
-                                    Debug.Log("after: " + thisCharacter.myClass);
-                                }
+                                Debug.Log("before: " + thisCharacter.myClass);
+                                thisCharacter.myClass = thisClass;
+                                Debug.Log("after: " + thisCharacter.myClass);
                             }
-                            break;
-                        case "Gender":
-                            thisCharacter.isMale = true;
-                            if (value == "False")
+                        }
+                        break;
+                    case "Gender":
+                        thisCharacter.isMale = true;
+                        if (value == "False")
+                        {
+                            thisCharacter.isMale = false;
+                        }
+                        break;
+                    case "Portrait":
+                        thisCharacter.portraitString = value;
+                        GetComponent<UIHandler>().UpdateUI(true);
+                        break;
+                    case "HP":
+                        break;
+                    default:
+                        foreach (CharacterAttributes.BaseAttributes thisAttribute in System.Enum.GetValues(typeof(CharacterAttributes.BaseAttributes)))
+                        {
+                            if (thisAttribute.ToString() == thing)
                             {
-                                thisCharacter.isMale = false;
+                                thisCharacter.myAttributes[thisAttribute] = int.Parse(value);
                             }
-                            break;
-                        case "Portrait":
-                            thisCharacter.portraitString = value;
-                            GetComponent<UIHandler>().UpdateUI(true);
-                            break;
-                        case "HP":                    
-                            break;
-                        default:
-                            foreach (CharacterAttributes.BaseAttributes thisAttributes in System.Enum.GetValues(typeof(CharacterAttributes.BaseAttributes)))
-                            {
-                                if (thisAttributes.ToString() == thing)
-                                {
-                                    thisCharacter.myAttributes[thisAttributes] = int.Parse(value);                    }
-                            }
-                            break;
-                    }
-                }
-                else
-                {
-                    Debug.Log("Symbol : not found");
+                        }
+                        break;
                 }
             }
-            break;
+            else
+            {
+                Debug.Log("Symbol : not found");
+            }
+            input = mySR.ReadLine();
         }
         mySR.Close();
-
     }
 
 }

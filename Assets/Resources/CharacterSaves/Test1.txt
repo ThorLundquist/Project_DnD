@@ -1,0 +1,12 @@
+Name:Test1
+Gender:True
+Race:Human
+Class:Paladin
+Portrait:MaleHuman2 (UnityEngine.Sprite)
+Strength: 15
+Constitution: 15
+Dexterity: 12
+Intelligence: 12
+Wisdom: 14
+Charisma: 16
+HP:

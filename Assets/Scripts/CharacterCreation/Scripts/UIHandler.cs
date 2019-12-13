@@ -8,7 +8,7 @@ public class UIHandler : MonoBehaviour
 {
     CharacterGenerator myCharGen;
 
-    public Text raceText, classText, genderText;
+    public Text nameText, raceText, classText, genderText;
     public Text strValue, dexValue, conValue, chaValue, wisValue, intValue;
     public Text hpValue, pointsValue;
     public Text strRacial, dexRacial, conRacial, intRacial, wisRacial, chaRacial;
@@ -22,17 +22,13 @@ public class UIHandler : MonoBehaviour
     {
         myCharGen = GetComponent<CharacterGenerator>();
         myCharGen.InitializeCharacterGenerator();
-        myCharGen.CheckRace();
+        myCharGen.CheckRace(true);
         raceText.text = myCharGen.myRace.ToString();
         classText.text = myCharGen.myClass.ToString();
 
         //Updates default gender text 
         genderText.text = "Male";
-        if (!myCharGen.isMale)
-        {
-            genderText.text = "Female";
-        }
-
+        
         //Updates the portrait
         portrait.sprite = myCharGen.myPortrait;
         pointsValue.text = myCharGen.points.ToString();
@@ -45,12 +41,25 @@ public class UIHandler : MonoBehaviour
     {
         if (changeRace == true)
         {
-            myCharGen.CheckRace();
+            myCharGen.CheckRace(true);
         }
 
         portrait.sprite = myCharGen.myPortrait;
         pointsValue.text = myCharGen.points.ToString();
 
+        UpdateAttributes();
+
+        //Opdatere Mod kolonnen
+        //strModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Strength].ToString();
+        //dexModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Dexterity].ToString();
+        //conModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Constitution].ToString();
+        //intModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Intelligence].ToString();
+        //wisModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Wisdom].ToString();
+        //chaModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Charisma].ToString();        
+    }
+
+    void UpdateAttributes()
+    {
         // Opdatere Score kolonnen
         strValue.text = myCharGen.myAttributes[CharacterAttributes.BaseAttributes.Strength].ToString();
         conValue.text = myCharGen.myAttributes[CharacterAttributes.BaseAttributes.Constitution].ToString();
@@ -68,14 +77,6 @@ public class UIHandler : MonoBehaviour
         chaRacial.text = myCharGen.myRacials[CharacterAttributes.BaseRacials.Charisma].ToString();
 
         CalcMods();
-
-        //Opdatere Mod kolonnen
-        //strModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Strength].ToString();
-        //dexModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Dexterity].ToString();
-        //conModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Constitution].ToString();
-        //intModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Intelligence].ToString();
-        //wisModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Wisdom].ToString();
-        //chaModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Charisma].ToString();        
     }
 
     /*
@@ -123,6 +124,7 @@ public class UIHandler : MonoBehaviour
 
     public void GenderButtonClicked()
     {
+        myCharGen.portraitString = "";
         myCharGen.ChangeGender();
         if (myCharGen.isMale)
         {
@@ -229,8 +231,10 @@ public class UIHandler : MonoBehaviour
         }
 
         GetComponent<FileIO>().LoadCharacter(nameValue.text);
-        UpdateUI(false);
 
+        UpdateAttributes();
+
+        nameText.text = myCharGen.myName;
         raceText.text = myCharGen.myRace.ToString();
         classText.text = myCharGen.myClass.ToString();
 
@@ -278,7 +282,4 @@ public class UIHandler : MonoBehaviour
         int chaMod = (myChaMod / div) - min;
         chaModValue.text = chaMod.ToString();
     }
-
-
-
 }

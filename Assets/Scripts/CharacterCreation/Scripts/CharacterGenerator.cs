@@ -10,6 +10,7 @@ public class CharacterGenerator : MonoBehaviour
 
     public CharacterAttributes.Races myRace;
     public CharacterAttributes.Classes myClass;
+    public string myName;
 
     public Dictionary<CharacterAttributes.BaseAttributes, int> myAttributes;
     public Dictionary<CharacterAttributes.BaseRacials, int> myRacials;
@@ -24,13 +25,12 @@ public class CharacterGenerator : MonoBehaviour
 
     public void InitializeCharacterGenerator()
     {
-        Debug.Log("InitializeCharacterGenerator() called");
-
         myAttributes = new Dictionary<CharacterAttributes.BaseAttributes, int>();
         myRacials = new Dictionary<CharacterAttributes.BaseRacials, int>();
         myMods = new Dictionary<CharacterAttributes.BaseModifiers, int>();
+        
         //Initialitisere all vores Attributter til en start værdi
-        InitializeAttributes();
+        //InitializeAttributes();
 
         //Sæt initial race
         myRace = CharacterAttributes.Races.Human;
@@ -70,15 +70,17 @@ public class CharacterGenerator : MonoBehaviour
         }
     }
 
-    public void CheckRace()
+    public void CheckRace(bool isNew)
     {
-        points = 27;
-        Debug.Log("CheckRace called");
-        InitializeAttributes();
+        if (isNew)
+        {
+            points = 27;
+            InitializeAttributes();
+        }
+
         switch (myRace)
         {
             case CharacterAttributes.Races.Dwarf:
-                Debug.Log("Case Dwarf");
                 myAttributes[CharacterAttributes.BaseAttributes.Constitution] += 2;
                 myRacials[CharacterAttributes.BaseRacials.Constitution] += 2;
 
@@ -89,7 +91,6 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Elf:
-                Debug.Log("Case elf");
                 myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 2;
                 myRacials[CharacterAttributes.BaseRacials.Dexterity] += 2;
 
@@ -100,7 +101,6 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Halfling:
-                Debug.Log("Case Halfling");
                 myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 2;
                 myRacials[CharacterAttributes.BaseRacials.Dexterity] += 2;
 
@@ -111,7 +111,6 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Human:
-                Debug.Log("Case Human");
                 myAttributes[CharacterAttributes.BaseAttributes.Strength] += 1;
                 myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 1;
                 myAttributes[CharacterAttributes.BaseAttributes.Constitution] += 1;
@@ -134,7 +133,6 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Dragonborn:
-                Debug.Log("Case Dragonborn");
                 myAttributes[CharacterAttributes.BaseAttributes.Strength] += 2;
                 myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 1;
 
@@ -148,7 +146,6 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Gnome:
-                Debug.Log("Case Gnome");
                 myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 2;
 
                 myRacials[CharacterAttributes.BaseRacials.Intelligence] += 2;
@@ -160,7 +157,6 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Half_Elf:
-                Debug.Log("Half Elf");
                 myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 2;
                 myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 1;
                 myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 1;
@@ -176,7 +172,6 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Half_Orc:
-                Debug.Log("Case Half Orc");
                 myAttributes[CharacterAttributes.BaseAttributes.Strength] += 2;
                 myAttributes[CharacterAttributes.BaseAttributes.Constitution] += 1;
 
@@ -190,7 +185,6 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Tiefling:
-                Debug.Log("Tiefling");
                 myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 1;
                 myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 2;
 
@@ -317,7 +311,7 @@ public class CharacterGenerator : MonoBehaviour
 
     public void ChangePortrait(bool goNext)
     {
-        Debug.Log("ChangePortrait() called");
+        
         if (goNext)
         {
 
@@ -349,7 +343,6 @@ public class CharacterGenerator : MonoBehaviour
 
     public void ChangeGender()
     {
-        Debug.Log("ChangeGender() called");
         isMale = !isMale;
     }
 
