@@ -77,9 +77,7 @@ public class FileIO : MonoBehaviour
                         {
                             if (thisClass.ToString() == value)
                             {
-                                Debug.Log("before: " + thisCharacter.myClass);
                                 thisCharacter.myClass = thisClass;
-                                Debug.Log("after: " + thisCharacter.myClass);
                             }
                         }
                         break;
@@ -92,7 +90,7 @@ public class FileIO : MonoBehaviour
                         break;
                     case "Portrait":
                         thisCharacter.portraitString = value;
-                        GetComponent<UIHandler>().UpdateUI(true);
+                        GetComponent<UIHandler>().UpdateUI(false);
                         break;
                     case "HP":
                         break;

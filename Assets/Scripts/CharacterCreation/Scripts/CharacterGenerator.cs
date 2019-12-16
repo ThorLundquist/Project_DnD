@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,23 +23,21 @@ public class CharacterGenerator : MonoBehaviour
     readonly int baseValue = 10;
     readonly int baseRacial = 0;
     public int points;
+    public int cost;
 
     public void InitializeCharacterGenerator()
     {
         myAttributes = new Dictionary<CharacterAttributes.BaseAttributes, int>();
         myRacials = new Dictionary<CharacterAttributes.BaseRacials, int>();
         myMods = new Dictionary<CharacterAttributes.BaseModifiers, int>();
-        
-        //Initialitisere all vores Attributter til en start værdi
-        //InitializeAttributes();
 
-        //Sæt initial race
+        //Set initial race
         myRace = CharacterAttributes.Races.Human;
 
-        //Sæt initial class
+        //Set initial class
         myClass = CharacterAttributes.Classes.Fighter;
 
-        //Sæt default portræt
+        //Set default portrait
         portraitList = GetComponent<PortraitScriptable>().mHuman;
         myPortrait = portraitList[0];
     }
@@ -75,14 +74,16 @@ public class CharacterGenerator : MonoBehaviour
         if (isNew)
         {
             points = 27;
+            cost = 1;
             InitializeAttributes();
+            portraitString = "";
         }
 
         switch (myRace)
         {
             case CharacterAttributes.Races.Dwarf:
-                myAttributes[CharacterAttributes.BaseAttributes.Constitution] += 2;
-                myRacials[CharacterAttributes.BaseRacials.Constitution] += 2;
+                //myAttributes[CharacterAttributes.BaseAttributes.Constitution] += 2;
+                myRacials[CharacterAttributes.BaseRacials.Constitution] = 2;
 
                 portraitList = GetComponent<PortraitScriptable>().mDwarf;
                 if (!isMale)
@@ -91,8 +92,8 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Elf:
-                myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 2;
-                myRacials[CharacterAttributes.BaseRacials.Dexterity] += 2;
+                //myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 2;
+                myRacials[CharacterAttributes.BaseRacials.Dexterity] = 2;
 
                 portraitList = GetComponent<PortraitScriptable>().mElf;
                 if (!isMale)
@@ -101,8 +102,8 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Halfling:
-                myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 2;
-                myRacials[CharacterAttributes.BaseRacials.Dexterity] += 2;
+                //myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 2;
+                myRacials[CharacterAttributes.BaseRacials.Dexterity] = 2;
 
                 portraitList = GetComponent<PortraitScriptable>().mHalfling;
                 if (!isMale)
@@ -111,19 +112,19 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Human:
-                myAttributes[CharacterAttributes.BaseAttributes.Strength] += 1;
-                myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 1;
-                myAttributes[CharacterAttributes.BaseAttributes.Constitution] += 1;
-                myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 1;
-                myAttributes[CharacterAttributes.BaseAttributes.Wisdom] += 1;
-                myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 1;
+                //myAttributes[CharacterAttributes.BaseAttributes.Strength] += 1;
+                //myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 1;
+                //myAttributes[CharacterAttributes.BaseAttributes.Constitution] += 1;
+                //myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 1;
+                //myAttributes[CharacterAttributes.BaseAttributes.Wisdom] += 1;
+                //myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 1;
 
-                myRacials[CharacterAttributes.BaseRacials.Strength] += 1;
-                myRacials[CharacterAttributes.BaseRacials.Dexterity] += 1;
-                myRacials[CharacterAttributes.BaseRacials.Constitution] += 1;
-                myRacials[CharacterAttributes.BaseRacials.Intelligence] += 1;
-                myRacials[CharacterAttributes.BaseRacials.Wisdom] += 1;
-                myRacials[CharacterAttributes.BaseRacials.Charisma] += 1;
+                myRacials[CharacterAttributes.BaseRacials.Strength] = 1;
+                myRacials[CharacterAttributes.BaseRacials.Dexterity] = 1;
+                myRacials[CharacterAttributes.BaseRacials.Constitution] = 1;
+                myRacials[CharacterAttributes.BaseRacials.Intelligence] = 1;
+                myRacials[CharacterAttributes.BaseRacials.Wisdom] = 1;
+                myRacials[CharacterAttributes.BaseRacials.Charisma] = 1;
 
 
                 portraitList = GetComponent<PortraitScriptable>().mHuman;
@@ -133,11 +134,11 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Dragonborn:
-                myAttributes[CharacterAttributes.BaseAttributes.Strength] += 2;
-                myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 1;
+                //myAttributes[CharacterAttributes.BaseAttributes.Strength] += 2;
+                //myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 1;
 
-                myRacials[CharacterAttributes.BaseRacials.Strength] += 2;
-                myRacials[CharacterAttributes.BaseRacials.Charisma] += 1;
+                myRacials[CharacterAttributes.BaseRacials.Strength] = 2;
+                myRacials[CharacterAttributes.BaseRacials.Charisma] = 1;
 
                 portraitList = GetComponent<PortraitScriptable>().mDragonborn;
                 if (!isMale)
@@ -146,9 +147,9 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Gnome:
-                myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 2;
+                //myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 2;
 
-                myRacials[CharacterAttributes.BaseRacials.Intelligence] += 2;
+                myRacials[CharacterAttributes.BaseRacials.Intelligence] = 2;
 
                 portraitList = GetComponent<PortraitScriptable>().mGnome;
                 if (!isMale)
@@ -157,13 +158,13 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Half_Elf:
-                myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 2;
-                myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 1;
-                myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 1;
+                //myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 2;
+                //myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 1;
+                //myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 1;
 
-                myRacials[CharacterAttributes.BaseRacials.Charisma] += 2;
-                myRacials[CharacterAttributes.BaseRacials.Intelligence] += 1;
-                myRacials[CharacterAttributes.BaseRacials.Dexterity] += 1;
+                myRacials[CharacterAttributes.BaseRacials.Charisma] = 2;
+                myRacials[CharacterAttributes.BaseRacials.Intelligence] = 1;
+                myRacials[CharacterAttributes.BaseRacials.Dexterity] = 1;
 
                 portraitList = GetComponent<PortraitScriptable>().mHalf_Elf;
                 if (!isMale)
@@ -172,11 +173,11 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Half_Orc:
-                myAttributes[CharacterAttributes.BaseAttributes.Strength] += 2;
-                myAttributes[CharacterAttributes.BaseAttributes.Constitution] += 1;
+                //myAttributes[CharacterAttributes.BaseAttributes.Strength] += 2;
+                //myAttributes[CharacterAttributes.BaseAttributes.Constitution] += 1;
 
-                myRacials[CharacterAttributes.BaseRacials.Strength] += 2;
-                myRacials[CharacterAttributes.BaseRacials.Constitution] += 1;
+                myRacials[CharacterAttributes.BaseRacials.Strength] = 2;
+                myRacials[CharacterAttributes.BaseRacials.Constitution] = 1;
 
                 portraitList = GetComponent<PortraitScriptable>().mHalf_Orc;
                 if (!isMale)
@@ -185,11 +186,11 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Tiefling:
-                myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 1;
-                myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 2;
+                //myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 1;
+                //myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 2;
 
-                myRacials[CharacterAttributes.BaseRacials.Intelligence] += 1;
-                myRacials[CharacterAttributes.BaseRacials.Charisma] += 2;
+                myRacials[CharacterAttributes.BaseRacials.Intelligence] = 1;
+                myRacials[CharacterAttributes.BaseRacials.Charisma] = 2;
 
                 portraitList = GetComponent<PortraitScriptable>().mTiefling;
                 if (!isMale)
@@ -204,7 +205,7 @@ public class CharacterGenerator : MonoBehaviour
 
         if (portraitString == "")
         {
-            //Opdater portræt til default i den nye List
+            //Opdates portrait to default 
             myPortrait = portraitList[0];
         }
         else
@@ -219,13 +220,21 @@ public class CharacterGenerator : MonoBehaviour
         }
     }
 
+    public void CalcAtt()
+    {
+        myAttributes[CharacterAttributes.BaseAttributes.Strength] += myRacials[CharacterAttributes.BaseRacials.Strength];
+        myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += myRacials[CharacterAttributes.BaseRacials.Dexterity];
+        myAttributes[CharacterAttributes.BaseAttributes.Constitution] += myRacials[CharacterAttributes.BaseRacials.Constitution];
+        myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += myRacials[CharacterAttributes.BaseRacials.Intelligence];
+        myAttributes[CharacterAttributes.BaseAttributes.Wisdom] += myRacials[CharacterAttributes.BaseRacials.Wisdom];
+        myAttributes[CharacterAttributes.BaseAttributes.Charisma] += myRacials[CharacterAttributes.BaseRacials.Charisma];
+    }
+
     public void ChangeRace(bool goNext)
     {
-        Debug.Log("ChangeRace() called");
         bool foundIt = false;
         if (goNext)
         {
-            Debug.Log("ChangeRace() if");
             foreach (CharacterAttributes.Races thisRace in System.Enum.GetValues(typeof(CharacterAttributes.Races)))
             {
                 if (foundIt)
@@ -239,16 +248,15 @@ public class CharacterGenerator : MonoBehaviour
                     foundIt = true;
                 }
             }
+            //If we reach the end of the Enum of Races, set the next race to be the first race
             if (foundIt)
             {
                 myRace = 0;
             }
-
         }
 
         else
         {
-            Debug.Log("ChangeRace() Else");
             int lastValue = System.Enum.GetValues(typeof(CharacterAttributes.Races)).Length - 1;
             CharacterAttributes.Races lastRace = (CharacterAttributes.Races)lastValue;
 
@@ -261,7 +269,6 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 lastRace = thisRace;
             }
-
         }
     }
 
@@ -310,11 +317,9 @@ public class CharacterGenerator : MonoBehaviour
     }
 
     public void ChangePortrait(bool goNext)
-    {
-        
+    {        
         if (goNext)
         {
-
             int maxIndex = portraitList.Count;
             int currentIndex = portraitList.IndexOf(myPortrait);
 
@@ -324,7 +329,6 @@ public class CharacterGenerator : MonoBehaviour
                 currentIndex = 0;
             }
             myPortrait = portraitList[currentIndex];
-
         }
         else
         {
@@ -337,13 +341,29 @@ public class CharacterGenerator : MonoBehaviour
                 currentIndex = maxIndex - 1;
             }
             myPortrait = portraitList[currentIndex];
-
         }
     }
 
     public void ChangeGender()
     {
         isMale = !isMale;
+    }
+
+    public void AddAtt(CharacterAttributes.BaseAttributes attribute)
+    {
+        int myAtt = Convert.ToInt32(myAttributes[attribute]);
+        if ((myAtt == 8) && (points >= cost))
+        {
+            myAttributes[attribute] += 1;
+            points--;
+            cost++;
+        }
+        else if ((myAtt == 12) && (points >= cost))
+        {
+            myAttributes[attribute] += 1;
+            cost = cost + 2;
+            points = points - cost;
+        }
     }
 
     public void AddToStr()
@@ -565,6 +585,7 @@ public class CharacterGenerator : MonoBehaviour
             myAttributes[CharacterAttributes.BaseAttributes.Strength] -= 1;
             myAtt--;
             points++;
+            Debug.Log("Attr: " + myAtt);
             Debug.Log("total points: " + points);
         }
         else if ((myAtt <= 15) && (myAtt > 8))

@@ -23,6 +23,7 @@ public class UIHandler : MonoBehaviour
         myCharGen = GetComponent<CharacterGenerator>();
         myCharGen.InitializeCharacterGenerator();
         myCharGen.CheckRace(true);
+        myCharGen.CalcAtt();
         raceText.text = myCharGen.myRace.ToString();
         classText.text = myCharGen.myClass.ToString();
 
@@ -33,8 +34,8 @@ public class UIHandler : MonoBehaviour
         portrait.sprite = myCharGen.myPortrait;
         pointsValue.text = myCharGen.points.ToString();
 
-        //UpdateUI(true) sets the default view
-        UpdateUI(true);
+        //sets the default view
+        UpdateUI(false);
     }
 
     public void UpdateUI(bool changeRace)
@@ -43,19 +44,11 @@ public class UIHandler : MonoBehaviour
         {
             myCharGen.CheckRace(true);
         }
-
+        
         portrait.sprite = myCharGen.myPortrait;
         pointsValue.text = myCharGen.points.ToString();
 
-        UpdateAttributes();
-
-        //Opdatere Mod kolonnen
-        //strModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Strength].ToString();
-        //dexModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Dexterity].ToString();
-        //conModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Constitution].ToString();
-        //intModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Intelligence].ToString();
-        //wisModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Wisdom].ToString();
-        //chaModValue.text = myCharGen.myMods[CharacterAttributes.BaseModifiers.Charisma].ToString();        
+        UpdateAttributes();       
     }
 
     void UpdateAttributes()
@@ -134,7 +127,8 @@ public class UIHandler : MonoBehaviour
         {
             genderText.text = "Female";
         }
-        UpdateUI(true);
+        myCharGen.CheckRace(false);
+        UpdateUI(false);
     }
 
     public void SaveBtnClicked()
@@ -162,32 +156,33 @@ public class UIHandler : MonoBehaviour
 
     public void AddStrBtnClicked()
     {
-        myCharGen.AddToStr();
+        myCharGen.AddAtt(CharacterAttributes.BaseAttributes.Strength);
         UpdateUI(false);
     }
+
     public void AddDexBtnClicked()
     {
-        myCharGen.AddToDex();
-        UpdateUI(false);
+        myCharGen.AddAtt(CharacterAttributes.BaseAttributes.Dexterity);
+        UpdateUI(false); 
     }
     public void AddConBtnClicked()
     {
-        myCharGen.AddToCon();
-        UpdateUI(false);
+        myCharGen.AddAtt(CharacterAttributes.BaseAttributes.Constitution);
+        UpdateUI(false); 
     }
     public void AddIntBtnClicked()
     {
-        myCharGen.AddToInt();
+        myCharGen.AddAtt(CharacterAttributes.BaseAttributes.Intelligence);
         UpdateUI(false);
     }
     public void AddWisBtnClicked()
     {
-        myCharGen.AddToWis();
+        myCharGen.AddAtt(CharacterAttributes.BaseAttributes.Wisdom);
         UpdateUI(false);
     }
     public void AddChaBtnClicked()
     {
-        myCharGen.AddToCha();
+        myCharGen.AddAtt(CharacterAttributes.BaseAttributes.Charisma);
         UpdateUI(false);
     }
 
