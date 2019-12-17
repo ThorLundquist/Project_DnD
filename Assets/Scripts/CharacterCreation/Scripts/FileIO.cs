@@ -35,9 +35,8 @@ public class FileIO : MonoBehaviour
 
     public void LoadCharacter(string name)
     {
-        name = "Test1";
         fileName = filePath + name + ".txt";
-        Debug.Log("Filename is: " + fileName);
+
         if (!File.Exists(fileName))
         {
             Debug.Log("File not found");

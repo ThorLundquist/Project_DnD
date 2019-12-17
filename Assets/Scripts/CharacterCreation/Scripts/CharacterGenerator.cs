@@ -20,10 +20,9 @@ public class CharacterGenerator : MonoBehaviour
     public bool isMale = true;
 
     int myHP;
-    readonly int baseValue = 10;
+    readonly int baseValue = 8;
     readonly int baseRacial = 0;
     public int points;
-    public int cost;
 
     public void InitializeCharacterGenerator()
     {
@@ -74,7 +73,6 @@ public class CharacterGenerator : MonoBehaviour
         if (isNew)
         {
             points = 27;
-            cost = 1;
             InitializeAttributes();
             portraitString = "";
         }
@@ -82,7 +80,6 @@ public class CharacterGenerator : MonoBehaviour
         switch (myRace)
         {
             case CharacterAttributes.Races.Dwarf:
-                //myAttributes[CharacterAttributes.BaseAttributes.Constitution] += 2;
                 myRacials[CharacterAttributes.BaseRacials.Constitution] = 2;
 
                 portraitList = GetComponent<PortraitScriptable>().mDwarf;
@@ -92,7 +89,6 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Elf:
-                //myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 2;
                 myRacials[CharacterAttributes.BaseRacials.Dexterity] = 2;
 
                 portraitList = GetComponent<PortraitScriptable>().mElf;
@@ -102,7 +98,6 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Halfling:
-                //myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 2;
                 myRacials[CharacterAttributes.BaseRacials.Dexterity] = 2;
 
                 portraitList = GetComponent<PortraitScriptable>().mHalfling;
@@ -112,20 +107,12 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Human:
-                //myAttributes[CharacterAttributes.BaseAttributes.Strength] += 1;
-                //myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 1;
-                //myAttributes[CharacterAttributes.BaseAttributes.Constitution] += 1;
-                //myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 1;
-                //myAttributes[CharacterAttributes.BaseAttributes.Wisdom] += 1;
-                //myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 1;
-
                 myRacials[CharacterAttributes.BaseRacials.Strength] = 1;
                 myRacials[CharacterAttributes.BaseRacials.Dexterity] = 1;
                 myRacials[CharacterAttributes.BaseRacials.Constitution] = 1;
                 myRacials[CharacterAttributes.BaseRacials.Intelligence] = 1;
                 myRacials[CharacterAttributes.BaseRacials.Wisdom] = 1;
                 myRacials[CharacterAttributes.BaseRacials.Charisma] = 1;
-
 
                 portraitList = GetComponent<PortraitScriptable>().mHuman;
                 if (!isMale)
@@ -134,9 +121,6 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Dragonborn:
-                //myAttributes[CharacterAttributes.BaseAttributes.Strength] += 2;
-                //myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 1;
-
                 myRacials[CharacterAttributes.BaseRacials.Strength] = 2;
                 myRacials[CharacterAttributes.BaseRacials.Charisma] = 1;
 
@@ -147,8 +131,6 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Gnome:
-                //myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 2;
-
                 myRacials[CharacterAttributes.BaseRacials.Intelligence] = 2;
 
                 portraitList = GetComponent<PortraitScriptable>().mGnome;
@@ -158,10 +140,6 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Half_Elf:
-                //myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 2;
-                //myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 1;
-                //myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 1;
-
                 myRacials[CharacterAttributes.BaseRacials.Charisma] = 2;
                 myRacials[CharacterAttributes.BaseRacials.Intelligence] = 1;
                 myRacials[CharacterAttributes.BaseRacials.Dexterity] = 1;
@@ -173,9 +151,6 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Half_Orc:
-                //myAttributes[CharacterAttributes.BaseAttributes.Strength] += 2;
-                //myAttributes[CharacterAttributes.BaseAttributes.Constitution] += 1;
-
                 myRacials[CharacterAttributes.BaseRacials.Strength] = 2;
                 myRacials[CharacterAttributes.BaseRacials.Constitution] = 1;
 
@@ -186,9 +161,6 @@ public class CharacterGenerator : MonoBehaviour
                 }
                 break;
             case CharacterAttributes.Races.Tiefling:
-                //myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 1;
-                //myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 2;
-
                 myRacials[CharacterAttributes.BaseRacials.Intelligence] = 1;
                 myRacials[CharacterAttributes.BaseRacials.Charisma] = 2;
 
@@ -203,11 +175,22 @@ public class CharacterGenerator : MonoBehaviour
                 break;
         }
 
+        if (isNew)
+        {
+            AddRacialsToAttributes();
+        }
+
+        CheckPortraitString();
+        
+    }
+    public Sprite CheckPortraitString()
+    {
         if (portraitString == "")
         {
             //Opdates portrait to default 
             myPortrait = portraitList[0];
         }
+
         else
         {
             foreach (Sprite thisPortrait in portraitList)
@@ -215,12 +198,13 @@ public class CharacterGenerator : MonoBehaviour
                 if (thisPortrait.ToString() == portraitString)
                 {
                     myPortrait = thisPortrait;
+                    
                 }
             }
         }
+        return myPortrait;
     }
-
-    public void CalcAtt()
+    public void AddRacialsToAttributes()
     {
         myAttributes[CharacterAttributes.BaseAttributes.Strength] += myRacials[CharacterAttributes.BaseRacials.Strength];
         myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += myRacials[CharacterAttributes.BaseRacials.Dexterity];
@@ -230,12 +214,74 @@ public class CharacterGenerator : MonoBehaviour
         myAttributes[CharacterAttributes.BaseAttributes.Charisma] += myRacials[CharacterAttributes.BaseRacials.Charisma];
     }
 
+    public void SubRacialsFromAttributes()
+    {
+        myAttributes[CharacterAttributes.BaseAttributes.Strength] -= myRacials[CharacterAttributes.BaseRacials.Strength];
+        myAttributes[CharacterAttributes.BaseAttributes.Dexterity] -= myRacials[CharacterAttributes.BaseRacials.Dexterity];
+        myAttributes[CharacterAttributes.BaseAttributes.Constitution] -= myRacials[CharacterAttributes.BaseRacials.Constitution];
+        myAttributes[CharacterAttributes.BaseAttributes.Intelligence] -= myRacials[CharacterAttributes.BaseRacials.Intelligence];
+        myAttributes[CharacterAttributes.BaseAttributes.Wisdom] -= myRacials[CharacterAttributes.BaseRacials.Wisdom];
+        myAttributes[CharacterAttributes.BaseAttributes.Charisma] -= myRacials[CharacterAttributes.BaseRacials.Charisma];
+    }
+
+    public string CalcPoints()
+    {
+        points = 27;
+        string remainingPoints;
+
+        foreach (CharacterAttributes.BaseAttributes baseAttributes in Enum.GetValues(typeof(CharacterAttributes.BaseAttributes)))
+        {
+            int myAtt = Convert.ToInt32(myAttributes[baseAttributes]);
+
+            switch (myAtt)
+            {
+                case 8:
+                    break;
+                case 9:
+                    points -= 1;
+                    break;
+                case 10:
+                    points -= 2;
+                    break;
+                case 11:
+                    points -= 3;
+                    break;
+                case 12:
+                    points -= 4;
+                    break;
+                case 13:
+                    points -= 5;
+                    break;
+                case 14:
+                    points -= 7;
+                    break;
+                case 15:
+                    points -= 9;
+                    break;
+                case 16:
+                    points -= 9;
+                    break;
+                case 17:
+                    points -= 9;
+                    break;
+                case 18:
+                    points -= 9;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        remainingPoints = points.ToString();
+        return remainingPoints;
+    }
+
     public void ChangeRace(bool goNext)
     {
         bool foundIt = false;
         if (goNext)
         {
-            foreach (CharacterAttributes.Races thisRace in System.Enum.GetValues(typeof(CharacterAttributes.Races)))
+            foreach (CharacterAttributes.Races thisRace in Enum.GetValues(typeof(CharacterAttributes.Races)))
             {
                 if (foundIt)
                 {
@@ -257,10 +303,10 @@ public class CharacterGenerator : MonoBehaviour
 
         else
         {
-            int lastValue = System.Enum.GetValues(typeof(CharacterAttributes.Races)).Length - 1;
+            int lastValue = Enum.GetValues(typeof(CharacterAttributes.Races)).Length - 1;
             CharacterAttributes.Races lastRace = (CharacterAttributes.Races)lastValue;
 
-            foreach (CharacterAttributes.Races thisRace in System.Enum.GetValues(typeof(CharacterAttributes.Races)))
+            foreach (CharacterAttributes.Races thisRace in Enum.GetValues(typeof(CharacterAttributes.Races)))
             {
                 if (myRace == thisRace)
                 {
@@ -352,230 +398,18 @@ public class CharacterGenerator : MonoBehaviour
     public void AddAtt(CharacterAttributes.BaseAttributes attribute)
     {
         int myAtt = Convert.ToInt32(myAttributes[attribute]);
-        if ((myAtt == 8) && (points >= cost))
+
+        if (myAtt >= 8 && myAtt <= 13 && points >= 1)
         {
+            points -= 1;
             myAttributes[attribute] += 1;
-            points--;
-            cost++;
         }
-        else if ((myAtt == 12) && (points >= cost))
+        else if (myAtt >= 14 && myAtt <= 15 && points >= 2)
         {
+            points -= 2;
             myAttributes[attribute] += 1;
-            cost = cost + 2;
-            points = points - cost;
-        }
+        }        
     }
-
-    public void AddToStr()
-    {
-        int myAtt = myAttributes[CharacterAttributes.BaseAttributes.Strength];
-
-        if ((myAtt < 13) && (points >= 1))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Strength] += 1;
-            myAtt++;
-            points--;
-            Debug.Log("total points: " + points);
-        }
-        else if ((myAtt >= 13) && (myAtt <= 14) && (points >= 2))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Strength] += 1;
-            myAtt++;
-            points -= 2;
-            Debug.Log("total points: " + points);
-        }
-
-        else if ((myAtt >= 15) && (myAtt <= 16) && (points >= 3))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Strength] += 1;
-            myAtt++;
-            points -= 3;
-            Debug.Log("total points: " + points);
-        }
-
-        else if ((myAtt >= 17) && (myAtt <= 18) &&(points >= 4))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Strength] += 1;
-            myAtt++;
-            points -= 4;
-            Debug.Log("total points: " + points);
-        }
-    }
-    public void AddToDex()
-    {
-        int myAtt = myAttributes[CharacterAttributes.BaseAttributes.Dexterity];
-        if ((myAtt < 13) && (points >= 1))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 1;
-            myAtt++;
-            points--;
-            Debug.Log("total points: " + points);
-        }
-        else if ((myAtt >= 13) && (myAtt <= 14) && (points >= 2))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 1;
-            myAtt++;
-            points -= 2;
-            Debug.Log("total points: " + points);
-        }
-
-        else if ((myAtt >= 15) && (myAtt <= 16) && (points >= 3))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 1;
-            myAtt++;
-            points -= 3;
-            Debug.Log("total points: " + points);
-        }
-
-        else if ((myAtt >= 17) && (myAtt <= 18) && (points >= 4))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Dexterity] += 1;
-            myAtt++;
-            points -= 4;
-            Debug.Log("total points: " + points);
-        }
-    }
-    public void AddToCon()
-    {
-        int myAtt = myAttributes[CharacterAttributes.BaseAttributes.Constitution];
-
-        if ((myAtt < 13) && (points >= 1))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Constitution] += 1;
-            myAtt++;
-            points--;
-            Debug.Log("total points: " + points);
-        }
-        else if ((myAtt >= 13) && (myAtt <= 14) && (points >= 2))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Constitution] += 1;
-            myAtt++;
-            points -= 2;
-            Debug.Log("total points: " + points);
-        }
-
-        else if ((myAtt >= 15) && (myAtt <= 16) && (points >= 3))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Constitution] += 1;
-            myAtt++;
-            points -= 3;
-            Debug.Log("total points: " + points);
-        }
-
-        else if ((myAtt >= 17) && (myAtt <= 18) && (points >= 4))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Constitution] += 1;
-            myAtt++;
-            points -= 4;
-            Debug.Log("total points: " + points);
-        }
-    }
-    public void AddToInt()
-    {
-        int myAtt = myAttributes[CharacterAttributes.BaseAttributes.Intelligence];
-
-        if ((myAtt < 13) && (points >= 1))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 1;
-            myAtt++;
-            points--;
-            Debug.Log("total points: " + points);
-        }
-        else if ((myAtt >= 13) && (myAtt <= 14) && (points >= 2))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 1;
-            myAtt++;
-            points -= 2;
-            Debug.Log("total points: " + points);
-        }
-
-        else if ((myAtt >= 15) && (myAtt <= 16) && (points >= 3))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 1;
-            myAtt++;
-            points -= 3;
-            Debug.Log("total points: " + points);
-        }
-
-        else if ((myAtt >= 17) && (myAtt <= 18) && (points >= 4))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Intelligence] += 1;
-            myAtt++;
-            points -= 4;
-            Debug.Log("total points: " + points);
-        }
-    }
-    public void AddToWis()
-    {
-        int myAtt = myAttributes[CharacterAttributes.BaseAttributes.Wisdom];
-
-        if ((myAtt < 13) && (points >= 1))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Wisdom] += 1;
-            myAtt++;
-            points--;
-            Debug.Log("total points: " + points);
-        }
-        else if ((myAtt >= 13) && (myAtt <= 14) && (points >= 2))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Wisdom] += 1;
-            myAtt++;
-            points -= 2;
-            Debug.Log("total points: " + points);
-        }
-
-        else if ((myAtt >= 15) && (myAtt <= 16) && (points >= 3))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Wisdom] += 1;
-            myAtt++;
-            points -= 3;
-            Debug.Log("total points: " + points);
-        }
-
-        else if ((myAtt >= 17) && (myAtt <= 18) && (points >= 4))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Wisdom] += 1;
-            myAtt++;
-            points -= 4;
-            Debug.Log("total points: " + points);
-        }
-    }
-    public void AddToCha()
-    {
-        int myAtt = myAttributes[CharacterAttributes.BaseAttributes.Charisma];
-
-        if ((myAtt < 13) && (points >= 1))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 1;
-            myAtt++;
-            points--;
-            Debug.Log("total points: " + points);
-        }
-        else if ((myAtt >= 13) && (myAtt <= 14) && (points >= 2))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 1;
-            myAtt++;
-            points -= 2;
-            Debug.Log("total points: " + points);
-        }
-
-        else if ((myAtt >= 15) && (myAtt <= 16) && (points >= 3))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 1;
-            myAtt++;
-            points -= 3;
-            Debug.Log("total points: " + points);
-        }
-
-        else if ((myAtt >= 17) && (myAtt <= 18) && (points >= 4))
-        {
-            myAttributes[CharacterAttributes.BaseAttributes.Charisma] += 1;
-            myAtt++;
-            points -= 4;
-            Debug.Log("total points: " + points);
-        }
-    }
-
     public void SubFromStr()
     {
         int myAtt = myAttributes[CharacterAttributes.BaseAttributes.Strength];

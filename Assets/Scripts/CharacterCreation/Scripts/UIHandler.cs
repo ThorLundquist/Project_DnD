@@ -20,22 +20,21 @@ public class UIHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //In Start() we Initialize and set the default Character 
         myCharGen = GetComponent<CharacterGenerator>();
         myCharGen.InitializeCharacterGenerator();
         myCharGen.CheckRace(true);
-        myCharGen.CalcAtt();
+
+        //Sets texts on the UI to match the default
         raceText.text = myCharGen.myRace.ToString();
         classText.text = myCharGen.myClass.ToString();
-
-        //Updates default gender text 
         genderText.text = "Male";
         
         //Updates the portrait
         portrait.sprite = myCharGen.myPortrait;
         pointsValue.text = myCharGen.points.ToString();
 
-        //sets the default view
-        UpdateUI(false);
+        UpdateAttributes();
     }
 
     public void UpdateUI(bool changeRace)
@@ -226,13 +225,15 @@ public class UIHandler : MonoBehaviour
         }
 
         GetComponent<FileIO>().LoadCharacter(nameValue.text);
-
         UpdateAttributes();
-
+        myCharGen.CheckRace(false);
+        myCharGen.SubRacialsFromAttributes();
+        pointsValue.text = myCharGen.CalcPoints();
         nameText.text = myCharGen.myName;
         raceText.text = myCharGen.myRace.ToString();
         classText.text = myCharGen.myClass.ToString();
-
+        portrait.sprite = myCharGen.CheckPortraitString();
+        
         if (myCharGen.isMale)
         {
             genderText.text = "Male";
