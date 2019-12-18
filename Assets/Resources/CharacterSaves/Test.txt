@@ -1,12 +1,12 @@
 Name:Test
 Gender:True
 Race:Human
-Class:Barbarian
-Portrait:MaleHuman1 (UnityEngine.Sprite)
-Strength: 16
-Constitution: 14
-Dexterity: 16
-Intelligence: 10
-Wisdom: 10
-Charisma: 11
+Class:Bard
+Portrait:MaleHuman (UnityEngine.Sprite)
+Strength: 13
+Constitution: 13
+Dexterity: 13
+Intelligence: 14
+Wisdom: 14
+Charisma: 14
 HP:

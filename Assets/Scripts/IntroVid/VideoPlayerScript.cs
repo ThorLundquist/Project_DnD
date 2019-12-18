@@ -7,6 +7,7 @@ using UnityEngine.Video;
 
 public class VideoPlayerScript : MonoBehaviour
 {
+    public Image Panel;
     public RawImage image;
     public VideoClip videoToPlay;
     private VideoPlayer videoPlayer;
@@ -60,7 +61,7 @@ public class VideoPlayerScript : MonoBehaviour
 
         while (videoPlayer.isPlaying)
         {
-            Debug.LogWarning("Video Time: " + Mathf.FloorToInt((float)videoPlayer.time));
+            Debug.Log("Video Time: " + Mathf.FloorToInt((float)videoPlayer.time));
             yield return null;
         }
         Debug.Log("Done Playing Video");
@@ -70,6 +71,11 @@ public class VideoPlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (videoPlayer.time == 5)
+        {
+            Panel.gameObject.SetActive(true);
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.LoadScene(3);

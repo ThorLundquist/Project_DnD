@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UIHandler : MonoBehaviour
 {
     CharacterGenerator myCharGen;
-
+    public PlayerStatistics LocalPlayerData = new PlayerStatistics();
     public Text nameText, raceText, classText, genderText;
     public Text strValue, dexValue, conValue, chaValue, wisValue, intValue;
     public Text hpValue, pointsValue;
@@ -25,12 +25,11 @@ public class UIHandler : MonoBehaviour
         myCharGen.InitializeCharacterGenerator();
         myCharGen.CheckRace(true);
 
+        myCharGen.activeScene = SceneManager.GetActiveScene().buildIndex;
         //Sets texts on the UI to match the default
         raceText.text = myCharGen.myRace.ToString();
         classText.text = myCharGen.myClass.ToString();
         genderText.text = "Male";
-        
-        //Updates the portrait
         portrait.sprite = myCharGen.myPortrait;
         pointsValue.text = myCharGen.points.ToString();
 
@@ -43,10 +42,10 @@ public class UIHandler : MonoBehaviour
         {
             myCharGen.CheckRace(true);
         }
-        
+
+        nameText.text = myCharGen.myName;
         portrait.sprite = myCharGen.myPortrait;
         pointsValue.text = myCharGen.points.ToString();
-
         UpdateAttributes();       
     }
 
@@ -130,16 +129,6 @@ public class UIHandler : MonoBehaviour
         UpdateUI(false);
     }
 
-    public void SaveBtnClicked()
-    {
-        if (nameValue.text == "")
-        {
-            Debug.Log("No name entered");
-            return;
-        }
-
-        GetComponent<FileIO>().SaveCharacter(nameValue.text);
-    }
 
     public void ContBtnClicked()
     {
@@ -155,67 +144,99 @@ public class UIHandler : MonoBehaviour
 
     public void AddStrBtnClicked()
     {
+        myCharGen.SubRacialsFromAttributes();
         myCharGen.AddAtt(CharacterAttributes.BaseAttributes.Strength);
+        myCharGen.AddRacialsToAttributes();
         UpdateUI(false);
     }
-
     public void AddDexBtnClicked()
     {
+        myCharGen.SubRacialsFromAttributes();
         myCharGen.AddAtt(CharacterAttributes.BaseAttributes.Dexterity);
+        myCharGen.AddRacialsToAttributes();
         UpdateUI(false); 
     }
     public void AddConBtnClicked()
     {
+        myCharGen.SubRacialsFromAttributes();
         myCharGen.AddAtt(CharacterAttributes.BaseAttributes.Constitution);
+        myCharGen.AddRacialsToAttributes();
         UpdateUI(false); 
     }
     public void AddIntBtnClicked()
     {
+        myCharGen.SubRacialsFromAttributes();
         myCharGen.AddAtt(CharacterAttributes.BaseAttributes.Intelligence);
+        myCharGen.AddRacialsToAttributes();
         UpdateUI(false);
     }
     public void AddWisBtnClicked()
     {
+        myCharGen.SubRacialsFromAttributes();
         myCharGen.AddAtt(CharacterAttributes.BaseAttributes.Wisdom);
+        myCharGen.AddRacialsToAttributes();
         UpdateUI(false);
     }
     public void AddChaBtnClicked()
     {
+        myCharGen.SubRacialsFromAttributes();
         myCharGen.AddAtt(CharacterAttributes.BaseAttributes.Charisma);
+        myCharGen.AddRacialsToAttributes();
         UpdateUI(false);
     }
 
     public void SubStrBtnClicked()
     {
-        myCharGen.SubFromStr();
+        myCharGen.SubRacialsFromAttributes();
+        myCharGen.SubAtt(CharacterAttributes.BaseAttributes.Strength);
+        myCharGen.AddRacialsToAttributes();
         UpdateUI(false);
     }
     public void SubDexBtnClicked()
     {
-        myCharGen.SubFromDex();
+        myCharGen.SubRacialsFromAttributes();
+        myCharGen.SubAtt(CharacterAttributes.BaseAttributes.Dexterity);
+        myCharGen.AddRacialsToAttributes();
         UpdateUI(false);
     }
     public void SubConBtnClicked()
     {
-        myCharGen.SubFromCon();
+        myCharGen.SubRacialsFromAttributes();
+        myCharGen.SubAtt(CharacterAttributes.BaseAttributes.Constitution);
+        myCharGen.AddRacialsToAttributes();
         UpdateUI(false);
     }
     public void SubIntBtnClicked()
     {
-        myCharGen.SubFromInt();
+        myCharGen.SubRacialsFromAttributes();
+        myCharGen.SubAtt(CharacterAttributes.BaseAttributes.Intelligence);
+        myCharGen.AddRacialsToAttributes();
         UpdateUI(false);
     }
     public void SubWisBtnClicked()
     {
-        myCharGen.SubFromWis();
+        myCharGen.SubRacialsFromAttributes();
+        myCharGen.SubAtt(CharacterAttributes.BaseAttributes.Wisdom);
+        myCharGen.AddRacialsToAttributes();
         UpdateUI(false);
     }
     public void SubChaBtnClicked()
     {
-        myCharGen.SubFromCha();
+        myCharGen.SubRacialsFromAttributes();
+        myCharGen.SubAtt(CharacterAttributes.BaseAttributes.Charisma);
+        myCharGen.AddRacialsToAttributes();
         UpdateUI(false);
     }
 
+    public void SaveBtnClicked()
+    {
+        if (nameValue.text == "")
+        {
+            Debug.Log("No name entered");
+            return;
+        }
+        GetComponent<FileIO>().SaveCharacter(nameValue.text);
+    }
     public void LoadBtnClicked()
     {
         if (nameValue.text == "")
@@ -229,6 +250,7 @@ public class UIHandler : MonoBehaviour
         myCharGen.CheckRace(false);
         myCharGen.SubRacialsFromAttributes();
         pointsValue.text = myCharGen.CalcPoints();
+        myCharGen.AddRacialsToAttributes();
         nameText.text = myCharGen.myName;
         raceText.text = myCharGen.myRace.ToString();
         classText.text = myCharGen.myClass.ToString();

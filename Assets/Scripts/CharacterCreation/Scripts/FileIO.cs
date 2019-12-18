@@ -16,6 +16,7 @@ public class FileIO : MonoBehaviour
         //grab reference to the current character generation
         CharacterGenerator thisCharacter = GetComponent<CharacterGenerator>();
         //basic population of output file
+        thisCharacter.SaveToGlobal();
         mySW.WriteLine("Name:" + name);
         mySW.WriteLine("Gender:" + thisCharacter.isMale);
         mySW.WriteLine("Race:" + thisCharacter.myRace.ToString());
@@ -28,7 +29,6 @@ public class FileIO : MonoBehaviour
         }
 
         mySW.WriteLine("HP:");
-
         mySW.Flush();
         mySW.Close();
     }
@@ -44,14 +44,11 @@ public class FileIO : MonoBehaviour
         }
 
         StreamReader mySR = new StreamReader(fileName);
-
         CharacterGenerator thisCharacter = GetComponent<CharacterGenerator>();
-
         string input = mySR.ReadLine();
 
         while (input != null || input == "")
         {
-            Debug.Log(input);
             if (input.Contains(":"))
             {
                 int index = input.IndexOf(":");

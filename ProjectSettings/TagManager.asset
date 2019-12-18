@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MC
   - Obstacle
+  - character
   layers:
   - Default
   - TransparentFX
