@@ -31,7 +31,7 @@ public class FileIO : MonoBehaviour
         mySW.WriteLine("HP:");
         mySW.Flush();
         mySW.Close();
-    }
+     }
 
     public void LoadCharacter(string name)
     {

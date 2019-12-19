@@ -16,6 +16,7 @@ public class VideoPlayerScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        GlobalControl.Instance.savedPlayerData.SceneID = SceneManager.GetActiveScene().buildIndex;
         Application.runInBackground = true;
         StartCoroutine(PlayVideo());
     }

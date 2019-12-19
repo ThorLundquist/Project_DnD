@@ -270,7 +270,7 @@ public class UIHandler : MonoBehaviour
     Metode der udregner karakterens Mod values, som er de tal 
     der skal bruges til de fleste rolls i spillet
     */
-    void CalcMods()
+    public void CalcMods()
     {
         int div = 2;
         int min = 5;

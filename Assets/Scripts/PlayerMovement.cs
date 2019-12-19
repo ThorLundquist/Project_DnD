@@ -19,14 +19,16 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
 
         // <Comment>> Added by Thor <Comment>> 
-        //PlayerState.Instance.localPlayerData = GlobalControl.Instance.LocalCopyOfData;
+        if (GlobalControl.Instance.IsSceneLoaded)
+        {
+            PlayerState.Instance.localPlayerData = GlobalControl.Instance.LocalCopyOfData;
+            transform.position = new Vector3(
+                GlobalControl.Instance.LocalCopyOfData.PositionX,
+                GlobalControl.Instance.LocalCopyOfData.PositionY,
+                GlobalControl.Instance.LocalCopyOfData.PositionZ);
 
-        //transform.position = new Vector3(
-        //    GlobalControl.Instance.LocalCopyOfData.PositionX,
-        //    GlobalControl.Instance.LocalCopyOfData.PositionY,
-        //    GlobalControl.Instance.LocalCopyOfData.PositionZ);
-
-        //GlobalControl.Instance.IsSceneLoaded = false;
+        GlobalControl.Instance.IsSceneLoaded = false;
+        }
         // Here we copy the Data from the GlobalControl instance, 
         // then set our player character's position to the stored variables
         // </Comment>> Added by Thor </Comment>> 
@@ -45,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         // Save to Local Player Data
         if (Input.GetKey(KeyCode.F5))
         {
-            PlayerState.Instance.localPlayerData.SceneID = Convert.ToInt32(SceneManager.GetActiveScene());
+            PlayerState.Instance.localPlayerData.SceneID = SceneManager.GetActiveScene().buildIndex;
             PlayerState.Instance.localPlayerData.PositionX = transform.position.x;
             PlayerState.Instance.localPlayerData.PositionY = transform.position.y;
             PlayerState.Instance.localPlayerData.PositionZ = transform.position.z;

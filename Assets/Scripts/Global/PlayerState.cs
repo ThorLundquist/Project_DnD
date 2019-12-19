@@ -11,10 +11,14 @@ public class PlayerState : MonoBehaviour
     void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+        }
 
         if (Instance != this)
+        {
             Destroy(gameObject);
+        }
     }
 
     //At start, load data from GlobalControl.

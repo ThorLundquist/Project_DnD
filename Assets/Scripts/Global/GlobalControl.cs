@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class GlobalControl : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class GlobalControl : MonoBehaviour
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream saveFile = File.Create("Saves/save.binary");
 
-        LocalCopyOfData = savedPlayerData;
+        LocalCopyOfData = PlayerState.Instance.localPlayerData;
 
         formatter.Serialize(saveFile, LocalCopyOfData);
 
@@ -48,7 +49,7 @@ public class GlobalControl : MonoBehaviour
         FileStream saveFile = File.Open("Saves/save.binary", FileMode.Open);
 
         LocalCopyOfData = (PlayerStatistics)formatter.Deserialize(saveFile);
-
+        SceneManager.LoadScene(LocalCopyOfData.SceneID);
         saveFile.Close();
     }
 }
