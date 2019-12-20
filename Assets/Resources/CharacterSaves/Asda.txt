@@ -1,0 +1,12 @@
+Name:Asda
+Gender:False
+Race:Human
+Class:Fighter
+Portrait:FemaleHuman (UnityEngine.Sprite)
+Strength: 9
+Constitution: 9
+Dexterity: 9
+Intelligence: 9
+Wisdom: 9
+Charisma: 9
+HP:

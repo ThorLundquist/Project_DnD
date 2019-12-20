@@ -16,6 +16,7 @@ public class FileIO : MonoBehaviour
         //grab reference to the current character generation
         CharacterGenerator thisCharacter = GetComponent<CharacterGenerator>();
         //basic population of output file
+        thisCharacter.SaveToLocal();
         thisCharacter.SaveToGlobal();
         mySW.WriteLine("Name:" + name);
         mySW.WriteLine("Gender:" + thisCharacter.isMale);

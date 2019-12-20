@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class UIHandler : MonoBehaviour
 {
     CharacterGenerator myCharGen;
-    public PlayerStatistics LocalPlayerData = new PlayerStatistics();
     public Text nameText, raceText, classText, genderText;
     public Text strValue, dexValue, conValue, chaValue, wisValue, intValue;
     public Text hpValue, pointsValue;
@@ -236,6 +235,7 @@ public class UIHandler : MonoBehaviour
             return;
         }
         GetComponent<FileIO>().SaveCharacter(nameValue.text);
+        myCharGen.SaveToLocal();
     }
     public void LoadBtnClicked()
     {

@@ -36,7 +36,7 @@ public class GlobalControl : MonoBehaviour
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream saveFile = File.Create("Saves/save.binary");
 
-        LocalCopyOfData = PlayerState.Instance.localPlayerData;
+        LocalCopyOfData = CharacterGenerator.Instance.localPlayerData;
 
         formatter.Serialize(saveFile, LocalCopyOfData);
 

@@ -6,7 +6,7 @@ using UnityEngine;
 public class CharacterGenerator : MonoBehaviour
 {
     public PlayerStatistics localPlayerData = new PlayerStatistics();
-
+    public static CharacterGenerator Instance;
     public List<Sprite> portraitList;
     public Sprite myPortrait;
     public string portraitString = "";
@@ -24,7 +24,22 @@ public class CharacterGenerator : MonoBehaviour
     public Dictionary<CharacterAttributes.BaseAttributes, int> myAttributes;
     public Dictionary<CharacterAttributes.BaseRacials, int> myRacials;
     public Dictionary<CharacterAttributes.BaseModifiers, int> myMods;
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
 
+        if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void Start()
+    {
+        localPlayerData = GlobalControl.Instance.savedPlayerData;
+    }
     public void InitializeCharacterGenerator()
     {
         myAttributes = new Dictionary<CharacterAttributes.BaseAttributes, int>();
@@ -418,22 +433,26 @@ public class CharacterGenerator : MonoBehaviour
         }
     }
 
+    public void SaveToLocal()
+    {
+        localPlayerData.SceneID = activeScene;
+        localPlayerData.myName = myName;
+        localPlayerData.myRace = myRace.ToString();
+        localPlayerData.myClass = myClass.ToString();
+        localPlayerData.isMale = isMale;
+        localPlayerData.portraitString = portraitString;
+        localPlayerData.points = points;
+        localPlayerData.Strength = myAttributes[CharacterAttributes.BaseAttributes.Strength];
+        localPlayerData.Dexterity = myAttributes[CharacterAttributes.BaseAttributes.Dexterity];
+        localPlayerData.Constitution = myAttributes[CharacterAttributes.BaseAttributes.Constitution];
+        localPlayerData.Intelligence = myAttributes[CharacterAttributes.BaseAttributes.Intelligence];
+        localPlayerData.Wisdom = myAttributes[CharacterAttributes.BaseAttributes.Wisdom];
+        localPlayerData.Charisma = myAttributes[CharacterAttributes.BaseAttributes.Charisma];
+    }
+
     public void SaveToGlobal()
     {
-        GlobalControl.Instance.savedPlayerData = localPlayerData;
-        GlobalControl.Instance.savedPlayerData.SceneID = activeScene;
-        GlobalControl.Instance.savedPlayerData.myName = myName;
-        GlobalControl.Instance.savedPlayerData.myRace = myRace.ToString();
-        GlobalControl.Instance.savedPlayerData.myClass = myClass.ToString();
-        GlobalControl.Instance.savedPlayerData.isMale = isMale;
-        GlobalControl.Instance.savedPlayerData.portraitString = portraitString;
-        GlobalControl.Instance.savedPlayerData.points = points;
-        GlobalControl.Instance.savedPlayerData.Strength = myAttributes[CharacterAttributes.BaseAttributes.Strength];
-        GlobalControl.Instance.savedPlayerData.Dexterity = myAttributes[CharacterAttributes.BaseAttributes.Dexterity];
-        GlobalControl.Instance.savedPlayerData.Constitution = myAttributes[CharacterAttributes.BaseAttributes.Constitution];
-        GlobalControl.Instance.savedPlayerData.Intelligence = myAttributes[CharacterAttributes.BaseAttributes.Intelligence];
-        GlobalControl.Instance.savedPlayerData.Wisdom = myAttributes[CharacterAttributes.BaseAttributes.Wisdom];
-        GlobalControl.Instance.savedPlayerData.Charisma = myAttributes[CharacterAttributes.BaseAttributes.Charisma];
+        GlobalControl.Instance.LocalCopyOfData = localPlayerData;
         GlobalControl.Instance.SaveData();
     }
 }
