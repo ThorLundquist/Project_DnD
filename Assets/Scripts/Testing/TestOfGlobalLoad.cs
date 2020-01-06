@@ -17,13 +17,13 @@ public class TestOfGlobalLoad : MonoBehaviour
     public List<GameObject> attributeValuesList;
 
     public int activeScene;
-
+    public bool isMale;
     // Start is called before the first frame update
     void Start()
     {
         //GlobalControl.Instance.LoadData();
 
-        localPlayerData = GlobalControl.Instance.savedPlayerData;
+        localPlayerData = GlobalControl.Instance.LocalCopyOfData;
         activeScene = SceneManager.GetActiveScene().buildIndex;
 
         nameText.text = localPlayerData.myName;
@@ -34,10 +34,12 @@ public class TestOfGlobalLoad : MonoBehaviour
         if (localPlayerData.isMale)
         {
             genderText.text = "Male";
+            isMale = true;
         }
         else if (!localPlayerData.isMale)
         {
             genderText.text = "Female";
+            isMale = false;
         }
         //points = localPlayerData.points;
         strValue.text = localPlayerData.Strength.ToString();
@@ -49,19 +51,33 @@ public class TestOfGlobalLoad : MonoBehaviour
         CalcMods();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SaveGame()
     {
+        Debug.Log("Saving");
+        localPlayerData.SceneID = activeScene;
+        localPlayerData.myName = nameText.text;
+        localPlayerData.myRace = raceText.text;
+        localPlayerData.myClass = classText.text;
+        localPlayerData.isMale = isMale;
+        //localPlayerData.portraitString = portraitString;
+        //localPlayerData.points = points;
+        localPlayerData.Strength = int.Parse(strValue.text);//myAttributes[CharacterAttributes.BaseAttributes.Strength];
+        localPlayerData.Dexterity = int.Parse(dexValue.text);//myAttributes[CharacterAttributes.BaseAttributes.Dexterity];
+        localPlayerData.Constitution = int.Parse(conValue.text);//myAttributes[CharacterAttributes.BaseAttributes.Constitution];
+        localPlayerData.Intelligence = int.Parse(intValue.text);//myAttributes[CharacterAttributes.BaseAttributes.Intelligence];
+        localPlayerData.Wisdom = int.Parse(wisValue.text);//myAttributes[CharacterAttributes.BaseAttributes.Wisdom];
+        localPlayerData.Charisma = int.Parse(chaValue.text);//myAttributes[CharacterAttributes.BaseAttributes.Charisma];
+        localPlayerData.SceneID = SceneManager.GetActiveScene().buildIndex;
+        localPlayerData.PositionX = transform.position.x;
+        localPlayerData.PositionY = transform.position.y;
+        localPlayerData.PositionZ = transform.position.z;
+        GlobalControl.Instance.LocalCopyOfData = localPlayerData;
         GlobalControl.Instance.SaveData();
     }
     public void LoadGame()
     {
         GlobalControl.Instance.LoadData();
+        localPlayerData = GlobalControl.Instance.LocalCopyOfData;
     }
     void CalcMods()
     {

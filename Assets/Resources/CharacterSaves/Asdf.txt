@@ -1,12 +1,12 @@
-Name:Asdf
+Name:asdf
 Gender:True
 Race:Human
 Class:Fighter
-Portrait:MaleHuman (UnityEngine.Sprite)
-Strength: 9
-Constitution: 9
-Dexterity: 9
-Intelligence: 9
-Wisdom: 9
-Charisma: 9
+Portrait:MaleHuman3 (UnityEngine.Sprite)
+Strength: 16
+Constitution: 12
+Dexterity: 12
+Intelligence: 12
+Wisdom: 13
+Charisma: 14
 HP:

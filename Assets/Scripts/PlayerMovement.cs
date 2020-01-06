@@ -44,38 +44,7 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log(change); //--> En lille tekst debugger, så jeg kan være sikker på at få de rigtige værdiger printet ud.
 
         // <Comment> Added by Thor <Comment>
-        // If File is being loaded, we remember character's in-game position
-        if (GlobalControl.Instance.IsSceneLoaded)
-        {
-            PlayerState.Instance.localPlayerData = GlobalControl.Instance.LocalCopyOfData;
 
-            transform.position = new Vector3(
-                            GlobalControl.Instance.LocalCopyOfData.PositionX,
-                            GlobalControl.Instance.LocalCopyOfData.PositionY,
-                            GlobalControl.Instance.LocalCopyOfData.PositionZ);
-
-            GlobalControl.Instance.IsSceneLoaded = false;
-        }
-        // Save to Local Player Data
-        if (Input.GetKey(KeyCode.F5))
-        {
-            PlayerState.Instance.localPlayerData.SceneID = SceneManager.GetActiveScene().buildIndex;
-            PlayerState.Instance.localPlayerData.PositionX = transform.position.x;
-            PlayerState.Instance.localPlayerData.PositionY = transform.position.y;
-            PlayerState.Instance.localPlayerData.PositionZ = transform.position.z;
-
-            GlobalControl.Instance.SaveData();
-        }
-        // Load from Local Copy Of Data
-        if (Input.GetKey(KeyCode.F8))
-        {
-            GlobalControl.Instance.LoadData();
-            GlobalControl.Instance.IsSceneLoaded = true;
-
-            int whichScene = GlobalControl.Instance.LocalCopyOfData.SceneID;
-
-            SceneManager.LoadScene(whichScene);
-        }
 
         // </Comment> Added by Thor </Comment>
     }
